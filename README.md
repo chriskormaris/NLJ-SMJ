@@ -26,14 +26,16 @@ The arguments that we must provide are explained further on.
 Implementation of two join algorithms, Sort Merge Join (SMJ) and Nested Loops Join (NLJ). Written in Java. The program take as input 2 comma-separated files and performs the user specified equi-join algorithm in order to join them on selected attributes.
 The program must accept the following command line arguments:
 
-**-f1** <file1 path>: full path to file1
-**-a1** <file1_join_attribute>: the column to use as join attribute from file1 (counting from 0)
-**-f2** <file2 path>: same as above for file2
-**-a2** <file2_join_attribute>: same as above for file2
-**-j** <join_algorithm_to_use>: SMJ or NLJ
-**-m** <available_memory_size>: we use as memory metric the number of records*
-**-t** <temporary_dir_path>: a directory to use for reading/writing temporary files
-**-o** <output_file_path>: the file to store the result of the join
+<ul>
+<li>-f1 "file1 path": full path to file1</li>
+<li>-a1 "file1_join_attribute": the column to use as join attribute from file1 (counting from 0)</li>
+<li>-f2 "file2 path": same as above for file2</li>
+<li>-a2 "file2_join_attribute": same as above for file2</li>
+<li>-j "join_algorithm_to_use": SMJ or NLJ</li>
+<li>-m "available_memory_size": we use as memory metric the number of records</li>
+<li>-t "temporary_dir_path": a directory to use for reading/writing temporary files</li>
+<li>-o "output_file_path": the file to store the result of the join</li>
+</ul>
 
 For example, in order to join two relations stored in files “R.csv” and “S.csv” on the 1st column of R and the 2nd column of S, using Sort Merge Join, having available memory = 200 records and saving the result to file “results.csv” one should execute the following command:
 
