@@ -23,7 +23,7 @@ The arguments that we must provide are explained further on.
 
 ## Description
 
-Implementation of two join algorithms, Sort Merge Join (SMJ) and Nested Loops Join (NLJ). Written in Java. The program take as input 2 comma-separated files and performs the user specified equi-join algorithm in order to join them on selected attributes.
+Implementation of two join algorithms, Nested Loops Join (NLJ) and Sort Merge Join (SMJ). Written in Java. The program take as input 2 comma-separated files and performs the user specified equi-join algorithm in order to join them on selected attributes.
 The program must accept the following command line arguments:
 
 <ul>
