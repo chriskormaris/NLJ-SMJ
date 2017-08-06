@@ -1,11 +1,11 @@
-package create_random_relations;
+package create_random_relation;
 
 import java.util.Random;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class CreateRandomRelations {
+public class CreateRandomRelation {
 	
 	
 	public static int N = 150;  // number of rows

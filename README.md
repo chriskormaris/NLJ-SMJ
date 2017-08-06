@@ -1,6 +1,8 @@
-# NLJ-SMJ
+# Nested Loop Join (NLJ) & Sort Merge Join (SMJ)
 
 By Chris Kormaris, August 2017
+
+Programming Language: Java
 
 
 ## HOT TO RUN IN ECLIPSE:
