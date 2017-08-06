@@ -84,6 +84,11 @@ For the SMJ algorithm, there is also included a thread implementation. During th
 **MergeAlternativeThread:** It reads one tuple at a time from each sorted sublist of the relation and writes the minimum in the sorted relation file. The algorithm proceeds to compare the next tuple from sublist that the last one was fetched from. The sorting finishes when all tuples have been written in the result file.
 
 
+I have also included a java class that creates a ".csv" relation file, containing random integers.
+
+**CreateRandomRelation:** Provide the filename of your choice ending with the ".csv" extension and the number of tuples the relation will contain. This program creates a relation file with 4 columns (or any number), which can be used later for the joins.
+
+
 The console output of each run can be found in these folders:
 **“runs”**, **“runsUsingThreads”**, **“runsAlternativeMerge”**,
 **“runsAlternativeMergeUsingThreads”**
