@@ -109,7 +109,7 @@ These are the results produced while running the equi-join algorithms by using a
 ![joinalgsAlternativeMergeUsingThreads.jar](/resultTimes/joinalgsAlternativeMergeUsingThreads.jar_results.png)
 
 
-**Observations**
+#### Observations
 
 <ul>
 <li>As expected, the execution time using threads is less. To achieve this, it is a requirement to run the program on a hardware with at least 2 CPU cores. If a relation is very small, the thread implementation is not beneficial, as for instance relation A in equi-join #7.</li>
