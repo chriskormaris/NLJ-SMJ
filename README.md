@@ -1,6 +1,6 @@
 # NLJ-SMJ
 
-By Chris Kormaris
+By Chris Kormaris, August 2017
 
 
 ## HOT TO RUN IN ECLIPSE:
