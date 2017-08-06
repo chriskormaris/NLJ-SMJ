@@ -68,7 +68,7 @@ java –jar joinalgsAlternativeMergeUsingThreads.jar –f1 R.csv –a1 0 –f2 S
 
 **TupleComparator:** It is used to sort the sublists of tuple objects, based on a given attribute, during SMJ.
 
-**SortMergeJoin:**  It contains the implementation of the non-efficient SMJ. The sorting phase of the 2-phase sort does not exceed m buffers, except only in one case. The algorithm works well if less than m-2 tuples have the same value on the join attribute.  Each sublist is sorted using the “sort” method of the “Collections” library. The merge phase of the external sorting algorithm has been implemented. There has also been included an alternative slower approach for the merge phase (its use is inside comments).
+**SortMergeJoin:**  It contains the implementation of the non-efficient SMJ. The sorting phase of the 2-phase sort does not exceed m buffers, in any case. Each sublist is sorted using the “sort” method of the “Collections” In order to return to previous tuples of a relation  (in case many tuples to be joined match on the specific attribute library), the "Mark-Reset" functionaly of the Buffered Reader is used. The merge phase of the external sorting algorithm has been implemented. There has also been included an alternative slower approach for the merge phase (its use is inside comments).
 
 **NestedLoopJoin:** It contains the implementation of the NLJ. The blocked NLJ algorithm is used. The smaller relation is chosen to be iterated in the outer while loop. Super-naive NLJ implementation is also included as an alternative, but it is not used.
 
@@ -95,9 +95,6 @@ I have also included a java class that creates a ".csv" relation file, containin
 <li>The console output of each run can be found in these folders: <b>“runs”</b>, <b>“runsUsingThreads”</b>, <b>“runsAlternativeMerge”</b>, <b>“runsAlternativeMergeUsingThreads”</b></li>
 </ul>
 </ul>
-
-
-
 
 
 ### Execution times
