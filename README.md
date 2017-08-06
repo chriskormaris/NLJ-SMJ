@@ -113,6 +113,6 @@ These are the results produced while running the equi-join algorithms by using a
 
 <ul>
 <li>As expected, the execution time using threads is less. To achieve this, it is a requirement to run the program on a hardware with at least 2 CPU cores. If a relation is very small, the thread implementation is not beneficial. For instance we won't benefit by running the merge phase on a separate thread for relation A, in equi-join #7, because it contains only 150 tuples.</li>
-<li>As we have can observe, the results of the implementation that uses the alternative merge algorithm are worst than the implementation that uses the external sorting merge algorithm. Also, the results of the alternative implementation that uses thread are better than the results of the alternative implementation that does not use threads.</li>
+<li>As we have can observe, the results of the implementation that uses the alternative merge algorithm are worst than the implementation that uses the external sorting merge algorithm. Also, the results of the alternative implementation that uses threads are better than the results of the alternative implementation that does not use threads.</li>
 </ul>
 
