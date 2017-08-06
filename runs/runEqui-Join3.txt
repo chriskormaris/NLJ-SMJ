@@ -1,0 +1,12 @@
+relation A number of records: 150
+relation E number of records: 100000
+
+Running Nested Loop Join...
+Outer relation is: A
+Inner relation is: E
+
+number of join records: 148
+NLJ total time: 0.512 sec
+NLJ complexity: T(A) * T(E)
+NLJ Cost: 15000000 I/Os
+Total memory used: 30 MB

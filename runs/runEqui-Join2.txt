@@ -1,0 +1,12 @@
+relation D number of records: 30000
+relation B number of records: 6000
+
+Running Nested Loop Join...
+Outer relation is: B
+Inner relation is: D
+
+number of join records: 1783
+NLJ total time: 4.305 sec
+NLJ complexity: T(D) * T(B)
+NLJ Cost: 180000000 I/Os
+Total memory used: 20 MB
