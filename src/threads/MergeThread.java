@@ -11,6 +11,8 @@ import project.Utilities;
 // Merges 2 sublists from each team in each iteration,
 // dividing the total number of sublists by 2, 
 // up until only one sublist exists.
+// Visit the following url for further explanation:
+// http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm
 public class MergeThread extends Thread {
 
 	String csvfile;

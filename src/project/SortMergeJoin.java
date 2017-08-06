@@ -107,6 +107,8 @@ public class SortMergeJoin {
 	// Splits the sublists to 2 teams.
 	// Merges the sublists of team 1 with the corresponding sublists of team 2.
 	// In each iterations the number of total sublists is divided by 2.
+	// Visit the following url for further explanation:
+	// http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm
 	public void merge(String csvfile, String relationName,
 			int a, int m, String tempDir, String sortedRelationCSV) {
 		

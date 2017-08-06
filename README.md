@@ -88,11 +88,16 @@ I have also included a java class that creates a ".csv" relation file, containin
 
 **CreateRandomRelation:** Provide the filename of your choice ending with the ".csv" extension and the number of tuples the relation will contain. This program creates a relation file with 4 columns (or any number), which can be used later for the joins.
 
+#### Notes
+<ul>
+<li>For further explanation on the external sorting algorithm, visit this url: <a href=http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm>External Sorting</a></li>
+<li>Please note that the “.csv” relations to be joined, should be copied in the <b>“testdata”</b> folder.</li>
+<li>The console output of each run can be found in these folders: <b>“runs”</b>, <b>“runsUsingThreads”</b>, <b>“runsAlternativeMerge”</b>, <b>“runsAlternativeMergeUsingThreads”</b></li>
+</ul>
+</ul>
 
-The console output of each run can be found in these folders:
-**“runs”**, **“runsUsingThreads”**, **“runsAlternativeMerge”**,
-**“runsAlternativeMergeUsingThreads”**
-Please note that the “.csv” relations to be joined, should be copied in the **“testdata”** folder.
+
+
 
 
 ### Execution times
