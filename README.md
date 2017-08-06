@@ -12,7 +12,9 @@ By Chris Kormaris
 3) Copy "testdata" folder to the Eclipse project root.
 
 4) Run “Main.java”. An exception will be thrown because we need to provide program arguments. To do so, go to:
+
 **Run → Run Configurations → select your run configuration from “Java Application” field → Arguments tab → Program arguments**
+
 The arguments that we must provide are explained further on.
 
 
