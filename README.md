@@ -100,9 +100,9 @@ In all the executions done, memory does not exceed the limit of 200 buffers. In 
   <tr><td>3</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: NLJ</td><td>0.798 sec</td><td>167</td></tr>
   <tr><td>4</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: NLJ</td><td>2.026 sec</td><td>321</td></tr>
   <tr><td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>1.781 sec</td><td>1997</td></tr>
-  <tr><td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>1.666 sec</td><td>1997</td></tr>
-  <tr><td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>5.814 sec</td><td>1997</td></tr>
-  <tr><td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>0.947 sec</td><td>1997</td></tr>
+  <tr><td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>1.666 sec</td><td>1126</td></tr>
+  <tr><td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>5.814 sec</td><td>167</td></tr>
+  <tr><td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>0.947 sec</td><td>321</td></tr>
 </table>
 
 The following table contains the results of the implementation that uses threads. Threads are only used by the SMJ algorithm:
@@ -111,9 +111,9 @@ The following table contains the results of the implementation that uses threads
 <table>
   <tr><th>#</th><th>Equi-Join</th><th>Execution Time</th><th>Tuples</th></tr>
   <tr><td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>2.364 sec</td><td>1997</td></tr>
-  <tr><td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>2.227 sec</td><td>1997</td></tr>
-  <tr><td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>6.606 sec</td><td>1997</td></tr>
-  <tr><td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>0.936 sec</td><td>1997</td></tr>
+  <tr><td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>2.227 sec</td><td>1126</td></tr>
+  <tr><td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>6.606 sec</td><td>167</td></tr>
+  <tr><td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>0.936 sec</td><td>321</td></tr>
 </table>
 
 These are the results produced while running the equi-join algorithms by using an alternative slower merge method:
@@ -122,18 +122,18 @@ These are the results produced while running the equi-join algorithms by using a
 <table>
   <tr><th>#</th><th>Equi-Join</th><th>Execution Time</th><th>Tuples</th></tr>
   <tr><td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>7.439 sec</td><td>1997</td></tr>
-  <tr><td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>5.468 sec</td><td>1997</td></tr>
-  <tr><td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>127.163 sec (2.12 min)</td><td>1997</td></tr>
-  <tr><td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>1.575 sec</td><td>1997</td></tr>
+  <tr><td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>5.468 sec</td><td>1126</td></tr>
+  <tr><td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>127.163 sec (2.12 min)</td><td>167</td></tr>
+  <tr><td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>1.575 sec</td><td>321</td></tr>
 </table>
 
 #### "joinalgsAlternativeMergeUsingThreads.jar" results
 <table>
   <tr><th>#</th><th>Equi-Join</th><th>Execution Time</th><th>Tuples</th></tr>
   <tr><td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>6.726 sec</td><td>1997</td></tr>
-  <tr><td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>5.562 sec</td><td>1997</td></tr>
-  <tr><td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>114.765 sec (1.919 min)</td><td>1997</td></tr>
-  <tr><td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>1.213 sec</td><td>1997</td></tr>
+  <tr><td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>5.562 sec</td><td>1126</td></tr>
+  <tr><td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>114.765 sec (1.919 min)</td><td>167</td></tr>
+  <tr><td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>1.213 sec</td><td>321</td></tr>
 </table>
 
 
