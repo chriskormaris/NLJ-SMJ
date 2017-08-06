@@ -92,16 +92,20 @@ Please note that the “.csv” relations to be joined, should be copied in the 
 
 In all the executions done, memory does not exceed the limit of 200 buffers. In the following table, the execution time of some equi-joins are shown:
 
+**"joinalgs.jar" results**
 ![joinalgs.jar](/resultTimes/joinalgs.jar_results.png)
 
 The following table contains the results of the implementation that uses threads. Threads are only used by the SMJ algorithm:
 
+**"joinalgsUsingThreads.jar" results**
 ![joinalgsUsingThreads.jar](/resultTimes/joinalgsUsingThreads.jar_results.png)
 
 These are the results produced while running the equi-join algorithms by using an alternative slower merge method:
 
+**"joinalgsAlternativeMerge.jar" results**
 ![joinalgsAlternativeMerge.jar](/resultTimes/joinalgsAlternativeMerge.jar_results.png)
 
+**"joinalgsAlternativeMergeUsingThreads.jar" results**
 ![joinalgsAlternativeMergeUsingThreads.jar](/resultTimes/joinalgsAlternativeMergeUsingThreads.jar_results.png)
 
 
