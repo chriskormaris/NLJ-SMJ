@@ -5,8 +5,8 @@ Running Nested Loop Join...
 Outer relation is: B
 Inner relation is: B
 
-number of join records: 357
-NLJ total time: 1.292 sec
+number of join records: 321
+NLJ total time: 2.026 sec
 NLJ complexity: T(B) * T(B)
 NLJ Cost: 36000000 I/Os
-Total memory used: 5 MB
+Total memory used: 94 MB

@@ -78,8 +78,8 @@ Merging sublist B2Sublist0 with B2Sublist1...[OK]
 
 Joining relations...[OK]
 
-number of join records: 357
-SMJ total time: 0.64 sec
+number of join records: 321
+SMJ total time: 0.947 sec
 SMJ complexity: 5 * ( T(B) + T(B) )
 SMJ Cost: 60000 I/Os 
-Total memory used: 51 MB
+Total memory used: 49 MB

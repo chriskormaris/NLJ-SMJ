@@ -519,8 +519,8 @@ Merging sublist ESublist0 with ESublist1...[OK]
 
 Joining relations...[OK]
 
-number of join records: 148
-SMJ total time: 4.911 sec
+number of join records: 167
+SMJ total time: 5.814 sec
 SMJ complexity: 5 * ( T(A) + T(E) )
 SMJ Cost: 500750 I/Os 
-Total memory used: 49 MB
+Total memory used: 13 MB
