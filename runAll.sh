@@ -31,7 +31,7 @@ echo 'Running equi-join 8...'
 java -jar joinalgs.jar -f1 testdata/B.csv -a1 1 -f2 testdata/B.csv -a2 2 -j SMJ -m 200 -t tmp -o results/results8.csv > runs/runEqui-Join8.txt
 printf '\n'
 
-## joinalgsUsingThreads.jar
+## joinalgsUsingThreads.jar -> THE FASTEST!
 echo 'Running equi-joins using "joinalgsUsingThreads.jar"'
 printf '\n'
 # equi-join 5
@@ -48,7 +48,7 @@ echo 'Running equi-join 8...'
 java -jar joinalgsUsingThreads.jar -f1 testdata/B.csv -a1 1 -f2 testdata/B.csv -a2 2 -j SMJ -m 200 -t tmp -o TESTING > runsUsingThreads/runEqui-Join8.txt
 printf '\n'
 
-## joinalgsAlternativeMerge.jar
+## joinalgsAlternativeMerge.jar -> THE SLOWEST!
 echo 'Running equi-joins using "joinalgsAlternativeMerge.jar"'
 printf '\n'
 # equi-join 5
