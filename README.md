@@ -104,7 +104,7 @@ In all the executions done, memory does not exceed the limit of 200 buffers. In 
 #### "joinalgs.jar" results
 <table>
   <tr>
-    <th>#</th><th>Equi-Join</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
+    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
   </tr>
   <tr>
     <td>1</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: NLJ</td><td>5.328 sec</td><td>1997</td><td>28MB</td>
@@ -137,7 +137,7 @@ The following table contains the results of the implementation that uses threads
 #### "joinalgsUsingThreads.jar" results
 <table>
   <tr>
-    <th>#</th><th>Equi-Join</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
+    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
   </tr>
   <tr>
     <td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>2.364 sec</td><td>1997</td><td>79MB</td>
@@ -158,7 +158,7 @@ These are the results produced while running the equi-join algorithms by using a
 #### "joinalgsAlternativeMerge.jar" result
 <table>
   <tr>
-    <th>#</th><th>Equi-Join</th><th>Execution Time</th><th>Tuples</th>
+    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th>
   </tr>
   <tr>
     <td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>7.439 sec</td><td>1997</td><td>61MB</td>
@@ -177,7 +177,7 @@ These are the results produced while running the equi-join algorithms by using a
 #### "joinalgsAlternativeMergeUsingThreads.jar" results
 <table>
   <tr>
-    <th>#</th><th>Equi-Join</th><th>Execution Time</th><th>Tuples</th>
+    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th>
   </tr>
   <tr>
     <td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>6.726 sec</td><td>1997</td><td>26MB</td>
