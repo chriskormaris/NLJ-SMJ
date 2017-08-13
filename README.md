@@ -7,20 +7,20 @@ Programming Language: Java
 
 ## HOT TO RUN IN ECLIPSE:
 
-1) Create a new Eclipse Java project.
+1. Create a new Eclipse Java project.
 
-2) Copy all packages folders located in "src" folder of the repository to the src folder of the Eclipse project.
+2. Copy all packages folders located in "src" folder of the repository to the src folder of the Eclipse project.
 
-3) Copy "testdata" folder to the Eclipse project root.
+3. Copy "testdata" folder to the Eclipse project root.
 
-4) Run “Main.java”. An exception will be thrown because we need to provide program arguments. To do so, go to:
+4. Run “Main.java”. An exception will be thrown because we need to provide program arguments. To do so, go to:
 
 **Run → Run Configurations → select your run configuration from “Java Application” field → Arguments tab → Program arguments**
 
 The arguments that we must provide are explained further on.
 
 
-** Some ".jar" executables, compiled with Java 8, are included as well. Java 7 and above is required to run.
+* Some ".jar" executables, compiled with Java 8, are included as well. Java 7 and above is required to run.
 
 
 ## Description
@@ -28,16 +28,14 @@ The arguments that we must provide are explained further on.
 Implementation of two join algorithms, Nested Loops Join (NLJ) and Sort Merge Join (SMJ). Written in Java. The program take as input 2 comma-separated files and performs the user specified equi-join algorithm in order to join them on selected attributes.
 The program must accept the following command line arguments:
 
-<ul>
-<li>-f1 "file1 path": full path to file1</li>
-<li>-a1 "file1_join_attribute": the column to use as join attribute from file1 (counting from 0)</li>
-<li>-f2 "file2 path": same as above for file2</li>
-<li>-a2 "file2_join_attribute": same as above for file2</li>
-<li>-j "join_algorithm_to_use": SMJ or NLJ</li>
-<li>-m "available_memory_size": we use as memory metric the number of records</li>
-<li>-t "temporary_dir_path": a directory to use for reading/writing temporary files</li>
-<li>-o "output_file_path": the file to store the result of the join</li>
-</ul>
+* -f1 "file1 path": full path to file1
+* -a1 "file1_join_attribute": the column to use as join attribute from file1 (counting from 0)
+* -f2 "file2 path": same as above for file2
+* -a2 "file2_join_attribute": same as above for file2
+* -j "join_algorithm_to_use": SMJ or NLJ
+* -m "available_memory_size": we use as memory metric the number of records
+* -t "temporary_dir_path": a directory to use for reading/writing temporary files
+* -o "output_file_path": the file to store the result of the join
 
 For example, in order to join two relations stored in files “R.csv” and “S.csv” on the 1st column of R and the 2nd column of S, using Sort Merge Join, having available memory = 200 records and saving the result to file “results.csv” one should execute the following command:
 
@@ -89,12 +87,10 @@ I have also included a java class that creates a ".csv" relation file, containin
 **CreateRandomRelation:** Provide the filename of your choice ending with the ".csv" extension and the number of tuples the relation will contain. This program creates a relation file with 4 columns (or any number), which can be used later for the joins.
 
 #### Notes
-<ul>
-<li>For further explanation on the external sorting algorithm, visit this url: <a href=http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm>External Sorting</a></li>
-<li>Please note that the “.csv” relations to be joined, should be copied in the <b>“testdata”</b> folder.</li>
-<li>The console output of each run can be found in these folders: <b>“runs”</b>, <b>“runsUsingThreads”</b>, <b>“runsAlternativeMerge”</b>, <b>“runsAlternativeMergeUsingThreads”</b></li>
-</ul>
-</ul>
+
+  1. For further explanation on the external sorting algorithm, visit this url: <a href=http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm>External Sorting</a>
+  2. Please note that the “.csv” relations to be joined, should be copied in the **“testdata”** folder.
+  3. The console output of each run can be found in these folders: **“runs”**, **“runsUsingThreads”**, **“runsAlternativeMerge”**, **“runsAlternativeMergeUsingThreads”**
 
 
 ### Execution times
@@ -196,8 +192,6 @@ These are the results produced while running the equi-join algorithms by using a
 
 #### Observations
 
-<ul>
-<li>As expected, the execution time using threads is less. To achieve this, it is a requirement to run the program on a hardware with at least 2 CPU cores. If a relation is very small, the thread implementation is not beneficial. For instance we won't benefit by running the merge phase on a separate thread for relation A, in equi-join #7, because it contains only 150 tuples.</li>
-<li>As we have can observe, the results of the implementation that uses the alternative merge algorithm are worst than the implementation that uses the external sorting merge algorithm. Also, the results of the alternative implementation that uses threads are better than the results of the alternative implementation that does not use threads.</li>
-</ul>
+  1. As expected, the execution time using threads is less. To achieve this, it is a requirement to run the program on a hardware with at least 2 CPU cores. If a relation is very small, the thread implementation is not beneficial. For instance we won't benefit by running the merge phase on a separate thread for relation A, in equi-join #7, because it contains only 150 tuples.</li>
+  2. As we have can observe, the results of the implementation that uses the alternative merge algorithm are worst than the implementation that uses the external sorting merge algorithm. Also, the results of the alternative implementation that uses threads are better than the results of the alternative implementation that does not use threads.
 
