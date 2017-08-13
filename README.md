@@ -28,14 +28,14 @@ The arguments that we must provide are explained further on.
 Implementation of two join algorithms, Nested Loops Join (NLJ) and Sort Merge Join (SMJ). Written in Java. The program take as input 2 comma-separated files and performs the user specified equi-join algorithm in order to join them on selected attributes.
 The program must accept the following command line arguments:
 
-* -f1 "file1 path": full path to file1
-* -a1 "file1_join_attribute": the column to use as join attribute from file1 (counting from 0)
-* -f2 "file2 path": same as above for file2
-* -a2 "file2_join_attribute": same as above for file2
-* -j "join_algorithm_to_use": SMJ or NLJ
-* -m "available_memory_size": we use as memory metric the number of records
-* -t "temporary_dir_path": a directory to use for reading/writing temporary files
-* -o "output_file_path": the file to store the result of the join
+* **-f1** "file1 path": full path to file1
+* **-a1** "file1_join_attribute": the column to use as join attribute from file1 (counting from 0)
+* **-f2** "file2 path": same as above for file2
+* **-a2** "file2_join_attribute": same as above for file2
+* **-j** "join_algorithm_to_use": SMJ or NLJ
+* **-m** "available_memory_size": we use as memory metric the number of records
+* **-t** "temporary_dir_path": a directory to use for reading/writing temporary files
+* **-o** "output_file_path": the file to store the result of the join
 
 For example, in order to join two relations stored in files “R.csv” and “S.csv” on the 1st column of R and the 2nd column of S, using Sort Merge Join, having available memory = 200 records and saving the result to file “results.csv” one should execute the following command:
 
@@ -88,9 +88,9 @@ I have also included a java class that creates a ".csv" relation file, containin
 
 #### Notes
 
-  1. For further explanation on the external sorting algorithm, visit this url: <a href=http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm>External Sorting</a>
-  2. Please note that the “.csv” relations to be joined, should be copied in the **“testdata”** folder.
-  3. The console output of each run can be found in these folders: **“runs”**, **“runsUsingThreads”**, **“runsAlternativeMerge”**, **“runsAlternativeMergeUsingThreads”**
+1. For further explanation on the external sorting algorithm, visit this url: <a href=http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm>External Sorting</a>
+2. Please note that the “.csv” relations to be joined, should be copied in the **“testdata”** folder.
+3. The console output of each run can be found in these folders: **“runs”**, **“runsUsingThreads”**, **“runsAlternativeMerge”**, **“runsAlternativeMergeUsingThreads”**
 
 
 ### Execution times
@@ -192,6 +192,6 @@ These are the results produced while running the equi-join algorithms by using a
 
 #### Observations
 
-  1. As expected, the execution time using threads is less. To achieve this, it is a requirement to run the program on a hardware with at least 2 CPU cores. If a relation is very small, the thread implementation is not beneficial. For instance we won't benefit by running the merge phase on a separate thread for relation A, in equi-join #7, because it contains only 150 tuples.</li>
-  2. As we have can observe, the results of the implementation that uses the alternative merge algorithm are worst than the implementation that uses the external sorting merge algorithm. Also, the results of the alternative implementation that uses threads are better than the results of the alternative implementation that does not use threads.
+1. As expected, the execution time using threads is less. To achieve this, it is a requirement to run the program on a hardware with at least 2 CPU cores. If a relation is very small, the thread implementation is not beneficial. For instance we won't benefit by running the merge phase on a separate thread for relation A, in equi-join #7, because it contains only 150 tuples.</li>
+2. As we have can observe, the results of the implementation that uses the alternative merge algorithm are worst than the implementation that uses the external sorting merge algorithm. Also, the results of the alternative implementation that uses threads are better than the results of the alternative implementation that does not use threads.
 
