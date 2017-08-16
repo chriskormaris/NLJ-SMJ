@@ -6,7 +6,7 @@ public class Main {
 		
 		/*** PARSE ARGUMENTS ***/
 		
-		// args example: -f1 testdata/B.csv -a1 1 -f2 testdata/B.csv -a2 2 -j SMJ -m 200 -t tmp -o results.csv
+		// args example: -f1 testdata\B.csv -a1 1 -f2 testdata\B.csv -a2 2 -j SMJ -m 200 -t tmp -o results.csv
 		String csvfile1 = "";
 		String csvfile2 = "";
 		int a1 = 0;
