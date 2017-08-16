@@ -1,16 +1,5 @@
-/**
- * ATHENS UNIVERSITY OF ECONOMICS & BUSINESS 
- * MSc in Computer Science
- * Course: Theory & Fundamentals of Database Systems
- * 
- * Students: Chris Kormaris, Konstantinos Korovesis
- * 
- * Deadline: January 19, 2017
- */
-
 package project;
 
-/** Memory restriction implementation, using batch files. **/
 public class Main {
 	
 	public static void main(String[] args) {
