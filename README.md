@@ -154,7 +154,7 @@ These are the results produced while running the equi-join algorithms by using a
 #### "joinalgsAlternativeMerge.jar" result
 <table>
   <tr>
-    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th>
+    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
   </tr>
   <tr>
     <td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>7.439 sec</td><td>1997</td><td>61MB</td>
@@ -173,7 +173,7 @@ These are the results produced while running the equi-join algorithms by using a
 #### "joinalgsAlternativeMergeUsingThreads.jar" results
 <table>
   <tr>
-    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th>
+    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
   </tr>
   <tr>
     <td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>6.726 sec</td><td>1997</td><td>26MB</td>
