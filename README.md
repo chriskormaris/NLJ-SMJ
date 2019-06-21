@@ -88,7 +88,6 @@ I have also included a java class that creates a ".csv" relation file, containin
 
 #### Notes
 
-* For further explanation on the external sorting algorithm, visit this url: <a href=http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm>External Sorting</a>
 * Please note that the “.csv” relations to be joined, should be copied in the **“testdata”** folder.
 * The console output of each run can be found in these folders: **“runs”**, **“runsUsingThreads”**, **“runsAlternativeMerge”**, **“runsAlternativeMergeUsingThreads”**
 
