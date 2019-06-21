@@ -40,19 +40,19 @@ The program must accept the following command line arguments:
 For example, in order to join two relations stored in files “R.csv” and “S.csv” on the 1st column of R and the 2nd column of S, using Sort Merge Join, having available memory = 200 records and saving the result to file “results.csv” one should execute the following command:
 
 ```java
-java –jar joinalgs.jar –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
+java –jar **joinalgs.jar** –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
 ```
 or
 ```java
-java –jar joinalgsUsingThreads.jar –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
+java –jar **joinalgsUsingThreads.jar** –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
 ```
 or
 ```java
-java –jar joinalgsAlternativeMerge.jar –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
+java –jar **joinalgsAlternativeMerge.jar** –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
 ```
 or
 ```java
-java –jar joinalgsAlternativeMergeUsingThreads.jar –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
+java –jar **joinalgsAlternativeMergeUsingThreads.jar** –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
 ```
 
 
