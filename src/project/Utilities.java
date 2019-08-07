@@ -454,7 +454,81 @@ public class Utilities {
 		}
 		System.out.println();
 	}
+	
+	
+	/* UNUSED AND ALTERNATIVE METHODS */
+	
+	
+	// JOIN TWO TUPLES, PROJECT ALL COLUMNS (INCLUDING JOIN COLUMN TWICE)
+	public static Tuple joinTuplesAlternative(Tuple t1, Tuple t2, int a1, int a2) {
+		Tuple joinTuple = new Tuple();
+		int numberOfAttributesOfT1 = t1.getNumberOfAttributes();
+		int numberOfAttributesOfT2 = t2.getNumberOfAttributes();
+		joinTuple.setNumberOfAttributes(numberOfAttributesOfT1 + numberOfAttributesOfT2);
+	
+		for (int i=0; i<numberOfAttributesOfT1; i++) {
+			joinTuple.attributes.add(t1.getAttribute(i));
+		}
+		
+		for (int i=numberOfAttributesOfT1; i<numberOfAttributesOfT1 + numberOfAttributesOfT2; i++) {
+			joinTuple.attributes.add(t2.getAttribute(i-numberOfAttributesOfT1));
+		}
+		
+		return joinTuple;
+	}
+	
+	
+	// Reads a ".csv" relation file and creates a Tuple array with that data.
+	// It is useful for the sort-join algorithm which does not use sublists.
+	public static Tuple[] readCSVIntoArray(String csvfile) {
+//			System.out.print("Reading csv file: " + "\"" + csvfile + "\"" + "...");
+
+		Tuple[] tupleArray = null;
+		
+		// first get the name of the relation from the csv file name
+		File file = new File(csvfile);
+		String relationName = file.getName().split(".csv")[0];
+		
+		if (relationName.contains("Sublist")) {
+			relationName = relationName.split("Sublist")[0];
+		}
+		
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(csvfile));
+			
+			String line = br.readLine(); // the first line contains the number of records
+			int number_of_tuples = Integer.parseInt(line);
+			tupleArray = new Tuple[number_of_tuples];
+			
+			int counter = 0;
+			line = br.readLine();
+			while(line != null) {
+				String[] attributes = line.split(",");
+				Tuple tuple = new Tuple(attributes.length, relationName);
+				
+				for (int i=0; i<attributes.length; i++) {
+					int attributeValue = Integer.parseInt(attributes[i]);
+					String attributeName = relationName + i;
+					Attribute attribute = new Attribute(attributeValue, attributeName);
+					tuple.attributes.add(attribute);
+				}
+				
+				tupleArray[counter] = tuple;
+				
+				counter++;
+				line = br.readLine();
+			}
+			
+			br.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+//			System.out.println("[OK]");
+		return tupleArray;
+	}
 		
 		
 }
-

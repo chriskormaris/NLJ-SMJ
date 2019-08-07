@@ -1,12 +1,23 @@
+/**
+ * ATHENS UNIVERSITY OF ECONOMICS & BUSINESS 
+ * MSc in Computer Science
+ * Course: Theory & Fundamentals of Database Systems
+ * 
+ * Students: Chris Kormaris, Konstantinos Korovesis
+ * 
+ * Deadline: January 19, 2017
+ */
+
 package project;
 
+/** Memory restriction implementation, using batch files. **/
 public class Main {
 	
 	public static void main(String[] args) {
 		
 		/*** PARSE ARGUMENTS ***/
 		
-		// args example: -f1 testdata\B.csv -a1 1 -f2 testdata\B.csv -a2 2 -j SMJ -m 200 -t tmp -o results.csv
+		// args example: -f1 testdata/B.csv -a1 1 -f2 testdata/B.csv -a2 2 -j SMJ -m 200 -t tmp -o results.csv
 		String csvfile1 = "";
 		String csvfile2 = "";
 		int a1 = 0;
@@ -136,6 +147,8 @@ public class Main {
 			
 			// Nested Loop Join R, S on a1=a2
 			long nljStartTime = System.currentTimeMillis();
+//			nlj.nestedLoopJoin(csvfile1, csvfile2,
+//					a1, a2, outputFile);
 			nlj.blockedNestedLoopJoin(csvfile1, csvfile2,
 					a1, a2, memory, outputFile);
 			long nljTotalTime = System.currentTimeMillis() - nljStartTime;

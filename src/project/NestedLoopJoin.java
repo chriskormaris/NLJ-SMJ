@@ -7,7 +7,7 @@ import java.util.List;
 
 public class NestedLoopJoin {
 	
-
+	
 	/** NLJ that is memory friendly. 
 	 * We assume that T(R) = B(R) and T(S) = B(S),
 	 * which means that each block contains exactly one record.
@@ -98,5 +98,44 @@ public class NestedLoopJoin {
 	}
 	
 	
-}
+	/** Super naive NLJ. Very slow!  **/
+	public void nestedLoopJoin(String csvfile1, String csvfile2,
+			int a1, int a2, String outputFile) {
+		
+		// get the name of the 1st relation from the csv file name
+		String relation1Name = Utilities.getCSVName(csvfile1);
+		
+		// get the name of the 2nd relation from the csv file name
+		String relation2Name = Utilities.getCSVName(csvfile2);
+		
+		BufferedReader br1 = Utilities.createBufferedReaderAndSkipFirstLine(csvfile1);
+		BufferedReader br2 = Utilities.createBufferedReaderAndSkipFirstLine(csvfile2);
+		BufferedWriter bw = Utilities.createBufferedWriter(outputFile);
+		boolean firstTuple = true; // used to print the header
 
+		Tuple r = null;
+		Tuple s = null;
+		while ((r = Utilities.getNextTuple(br1, relation1Name)) != null) {
+			while ( (s = Utilities.getNextTuple(br2, relation2Name)) != null) {
+				if (r.getAttribute(a1).getValue() == s.getAttribute(a2).getValue()) {
+					Tuple outputTuple = Utilities.joinTuples(r, s, a1, a2);
+					
+					// if this is the first tuple to be written,
+					// we should write the attributes header beforehand 
+					if (firstTuple) {
+						Utilities.writeHeaderToFile(bw, outputTuple);
+						firstTuple = false;
+					}
+					
+					Utilities.writeTupleToFile(bw, outputTuple);
+				}
+			}
+			Utilities.closeBufferedReader(br2);
+			br2 = Utilities.createBufferedReaderAndSkipFirstLine(csvfile2);
+		}
+		Utilities.closeBufferedReader(br1);
+		Utilities.closeBufferedWriter(bw);
+	}
+	
+	
+}

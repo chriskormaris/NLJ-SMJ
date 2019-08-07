@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//import threads.MergeAlternativeThread;
-import threads.MergeThread;
+import multiple_merge_threads.RelationMergeThread;
 
 public class SortMergeJoin {
 	
@@ -54,8 +53,19 @@ public class SortMergeJoin {
 		*/
 		
 		/* Solution 1 - External sorting merge with threads (THE FASTEST!) */
-		MergeThread merge1 = new MergeThread(csvfile1, relation1Name, a1, m, tempDir, sortedRcsv);
-		MergeThread merge2 = new MergeThread(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
+//		MergeThread merge1 = new MergeThread(csvfile1, relation1Name, a1, m, tempDir, sortedRcsv);
+//		MergeThread merge2 = new MergeThread(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
+//		merge1.start();
+//		merge2.start();
+//		try {
+//			merge1.join();
+//			merge2.join();
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+		
+		RelationMergeThread merge1 = new RelationMergeThread(csvfile1, relation1Name, a1, m, tempDir, sortedRcsv);
+		RelationMergeThread merge2 = new RelationMergeThread(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
 		merge1.start();
 		merge2.start();
 		try {
@@ -108,7 +118,7 @@ public class SortMergeJoin {
 	// Merges the sublists of team 1 with the corresponding sublists of team 2.
 	// In each iterations the number of total sublists is divided by 2.
 	// Visit the following url for further explanation:
-	// http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm
+	// http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm	
 	public void merge(String csvfile, String relationName,
 			int a, int m, String tempDir, String sortedRelationCSV) {
 		
@@ -353,5 +363,57 @@ public class SortMergeJoin {
 	}
 	
 	
-}
+	/** SMJ that does not use sublist files. **/
+	public void sortJoin(Tuple[] R, Tuple[] S, int a1, int a2, String outputFile) {
 
+		Arrays.sort(R, new TupleComparator(a1));
+		Arrays.sort(S, new TupleComparator(a2));
+		
+		int PR = 0; // pointer for R
+		int PS = 0; // pointer for S
+		
+		BufferedWriter bw = Utilities.createBufferedWriter(outputFile);
+		
+		do {
+			
+			if (R[PR].getAttributeValue(a1) == S[PS].getAttributeValue(a2)) {
+				Tuple outputTuple = Utilities.joinTuples(R[PR], S[PS], a1, a2);
+				
+				// if this is the first tuple to be written,
+				// we should write the attributes header beforehand 
+				if (Utilities.isEmptyFile(outputFile)) {
+					Utilities.writeHeaderToFile(bw, outputTuple);
+				}
+				
+				Utilities.writeTupleToFile(bw, outputTuple);
+				
+				// output further tuples that match with R[PR].getAttributeValue(a1)
+				int tempPS = PS + 1;
+				while (tempPS < S.length && (R[PR].getAttributeValue(a1) == S[tempPS].getAttributeValue(a2))) {
+					outputTuple = Utilities.joinTuples(R[PR], S[tempPS], a1, a2);
+					Utilities.writeTupleToFile(bw, outputTuple);
+					tempPS++;
+				}
+				
+				// output further tuples that match with S[PS].getAttributeValue(a2)
+				int tempPR = PR + 1;
+				while (tempPR < R.length && (R[tempPR].getAttributeValue(a1) == S[PS].getAttributeValue(a2))) {
+					outputTuple = Utilities.joinTuples(R[tempPR], S[PS], a1, a2);
+					Utilities.writeTupleToFile(bw, outputTuple);
+					tempPR++;
+				}
+				
+				PR++;
+				PS++;
+			} else if (R[PR].getAttributeValue(a1) < S[PS].getAttributeValue(a2)) {
+				PR++;
+			} else if (R[PR].getAttributeValue(a1) > S[PS].getAttributeValue(a2)) {
+				PS++;
+			}
+		} while (PR != R.length && PS != S.length);
+	
+		Utilities.closeBufferedWriter(bw);
+	}
+	
+	
+}
