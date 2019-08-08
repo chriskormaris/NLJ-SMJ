@@ -20,9 +20,13 @@ public class MergeIterationThread extends Thread {
 		this.relationName = relationName;
 		this.tempDir = tempDir;
 	}
-
+	
+	
 	@Override
 	public void run() {
+		System.out.println("Thread " + this.getId() + ": " +
+				"Merging " + number_of_sublists + " sublists for relation " + relationName + "!");
+		
 		int team1SublistCounter = 0;
 		int team2SublistCounter = (int) Math.ceil(((double) number_of_sublists / 2));
 		
@@ -38,7 +42,7 @@ public class MergeIterationThread extends Thread {
 		List<Thread> sublistThreads = new ArrayList<Thread>();
 		for (int i=0; i<number_of_team2_sublists; i++) { // iterate floor(T1sublists/2) times
 			
-			Thread sublistThread = new SublistMergeThread(a, relationName, team1SublistCounter, 
+			Thread sublistThread = new SublistMergeThread(this.getId(), a, relationName, team1SublistCounter, 
 					team2SublistCounter, tempDir);
 			sublistThreads.add(sublistThread);
 			sublistThread.start();

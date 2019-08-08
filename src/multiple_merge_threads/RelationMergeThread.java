@@ -39,7 +39,7 @@ public class RelationMergeThread extends Thread {
 		int number_of_sublists = (int) Math.ceil((double) total_records / m);
 		
 		System.out.println("relation " + relationName + " number of sublists: " + number_of_sublists);
-
+		System.out.println();
 		
 		/*** Merge the sorted sublist files of the relation into one sorted file. ***/
 

@@ -8,6 +8,7 @@ import project.Utilities;
 
 public class SublistMergeThread extends Thread {
 	
+	long parentThreadId;
 	int a; // the tuple attribute index
 	String relationName;
 	int team1SublistCounter;
@@ -18,8 +19,9 @@ public class SublistMergeThread extends Thread {
 		
 	}
 	
-	public SublistMergeThread(int a, String relationName, int team1SublistCounter, 
+	public SublistMergeThread(long parentThreadId, int a, String relationName, int team1SublistCounter, 
 			int team2SublistCounter, String tempDir) {
+		this.parentThreadId = parentThreadId;
 		this.a = a;
 		this.relationName = relationName;
 		this.team1SublistCounter = team1SublistCounter;
@@ -34,8 +36,8 @@ public class SublistMergeThread extends Thread {
 		String team1Sublist = relationName + "Sublist" + team1SublistCounter;
 		String team2Sublist = relationName + "Sublist" + team2SublistCounter;
 		
-		System.out.println("Thread " + this.getId() + ": " +
-				"Merging sublist " + team1Sublist + " with " + team2Sublist + "...");
+		System.out.println("\tParent Thread id: " + this.parentThreadId + ", Thread id: " + this.getId() +
+				", Merging sublist " + team1Sublist + " with " + team2Sublist + "...");
 		
 		Tuple team1Tuple = null;
 		Tuple team2Tuple = null;
