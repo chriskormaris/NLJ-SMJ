@@ -1,6 +1,7 @@
 # Nested Loop Join (NLJ) & Sort Merge Join (SMJ)
 
-By Chris Kormaris, August 2017
+By Christos Kormaris, August 2017
+**UPDATED August 2019:** Multiple threads implementation (as fast as can possibly be!)
 
 Programming Language: Java
 
@@ -188,9 +189,12 @@ These are the results produced while running the equi-join algorithms by using a
   </tr>
 </table>
 
+#### Notes
+* The equi-join experiments were all run on a 4-core computer with hyper-threads (4 cores + 4 virtual cores = 8 cores)!
+* If you want to make any comparisons between the execution times, you must run all experiments on a similar system each time.
 
 #### Observations
 
-* As expected, the execution time using threads is less. To achieve this, it is a requirement to run the program on a hardware with at least 2 CPU cores. If a relation is very small, the thread implementation is not beneficial. For instance we won't benefit by running the merge phase on a separate thread for relation A, in equi-join #7, because it contains only 150 tuples.</li>
-* As we have can observe, the results of the implementation that uses the alternative merge algorithm are worst than the implementation that uses the external sorting merge algorithm. Also, the results of the alternative implementation that uses threads are better than the results of the alternative implementation that does not use threads.
+* As expected, the execution time using threads is better. To achieve that, it is required to run the program on a hardware with at least 2 CPU cores. If a relation is very small, the thread implementation is not beneficial. For instance we won't benefit by running the merge phase on a separate thread for relation A, in equi-join #7, because it contains only 150 tuples.</li>
+* As we have can observe, the results of the implementation that uses the alternative merge algorithm are worst than the implementation that uses the external merge sorting algorithm. Also, the results of the alternative implementation that uses threads are better than the results of the alternative implementation that does not use threads.
 

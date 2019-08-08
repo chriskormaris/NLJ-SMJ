@@ -2,16 +2,15 @@ package project;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 import multiple_merge_threads.RelationMergeThread;
+
 
 public class SortMergeJoin {
 	
 	
-	/** Non-efficient SMJ.  **/
+	/** Non-efficient SMJ.  **/	
 	public void sortMergeJoin(String csvfile1, String csvfile2,
 			int a1, int a2, int m, String tempDir, String outputFile) {
 		
@@ -23,7 +22,7 @@ public class SortMergeJoin {
 		
 		/*** run the 2-phase sort on R and S ***/
 		
-		/*** phase 1: split each relation to sublists and sort them ***/
+		/*** Phase 1: split each relation to sublists and sort them ***/
 		
 		if (!relation1Name.equals(relation2Name)) {
 			Utilities.splitCSVToSortedSublists(csvfile1, a1, m, tempDir);
@@ -39,12 +38,12 @@ public class SortMergeJoin {
 		
 		System.out.println();
 		
-		/*** phase 2: merge ***/
+		/*** Phase 2: merge ***/
 		
 		String sortedRcsv = "sorted" + relation1Name;
 		String sortedScsv = "sorted" + relation2Name;
 		
-		/* Solution 1 - External sorting merge */
+		/* Solution 1 - External merge sorting, without threads. */
 		// This is the merging phase of the external sorting algorithm.
 		/*
 		merge(csvfile1, relation1Name, a1, m, tempDir, sortedRcsv);
@@ -52,18 +51,21 @@ public class SortMergeJoin {
 		merge(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
 		*/
 		
-		/* Solution 1 - External sorting merge with threads (THE FASTEST!) */
-//		MergeThread merge1 = new MergeThread(csvfile1, relation1Name, a1, m, tempDir, sortedRcsv);
-//		MergeThread merge2 = new MergeThread(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
-//		merge1.start();
-//		merge2.start();
-//		try {
-//			merge1.join();
-//			merge2.join();
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
+		/* Solution 1 - External merge sorting, with 2 threads. */
+		/*
+		MergeThread merge1 = new MergeThread(csvfile1, relation1Name, a1, m, tempDir, sortedRcsv);
+		MergeThread merge2 = new MergeThread(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
+		merge1.start();
+		merge2.start();
+		try {
+			merge1.join();
+			merge2.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		*/
 		
+		/* Solution 1 - External merge sorting, with multiple threads (THE FASTEST!). */
 		RelationMergeThread merge1 = new RelationMergeThread(csvfile1, relation1Name, a1, m, tempDir, sortedRcsv);
 		RelationMergeThread merge2 = new RelationMergeThread(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
 		merge1.start();
@@ -75,7 +77,7 @@ public class SortMergeJoin {
 			e.printStackTrace();
 		}
 		
-		/* Solution 2 (THE SLOWEST!) */
+		/* Solution 2, without threads (THE SLOWEST!). */
 		// Slower merge algorithm.
 		// Reads one tuple at a time from each sorted sublist of the relation
 		// and writes the min in the sortedRcsv or sortedScsv file.
@@ -85,7 +87,7 @@ public class SortMergeJoin {
 		mergeAlternative(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
 		*/
 		
-		/* Solution 2 with threads */
+		/* Solution 2, with 2 threads. */
 		/*
 		MergeAlternativeThread mergeAlternative1 = new MergeAlternativeThread(csvfile1, relation1Name, a1, m, tempDir, sortedRcsv);
 		MergeAlternativeThread mergeAlternative2 = new MergeAlternativeThread(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
@@ -101,7 +103,7 @@ public class SortMergeJoin {
 		
 		System.out.println();
 		
-		/*** run the join algorithm on the sorted relations R and S ***/
+		/*** Run the join algorithm on the sorted relations R and S ***/
 
 		System.out.print("Joining relations...");
 		Utilities.createNewFile(outputFile);
@@ -118,7 +120,8 @@ public class SortMergeJoin {
 	// Merges the sublists of team 1 with the corresponding sublists of team 2.
 	// In each iterations the number of total sublists is divided by 2.
 	// Visit the following url for further explanation:
-	// http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm	
+	// http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm
+	/*
 	public void merge(String csvfile, String relationName,
 			int a, int m, String tempDir, String sortedRelationCSV) {
 		
@@ -129,7 +132,7 @@ public class SortMergeJoin {
 		System.out.println("relation " + relationName + " number of sublists: " + number_of_sublists);
 		
 		
-		/*** Merge the sorted sublist files of the relation into one sorted file. ***/
+		// Merge the sorted sublist files of the relation into one sorted file.
 
 		// Starting from sublists of size m ,
 		// each time we double the length until we reach size T1.
@@ -215,11 +218,13 @@ public class SortMergeJoin {
 		Utilities.renameFile(tempDir + "/" + relationName + "Sublist0", tempDir + "/" + sortedRelationCSV);
 		
 	}
+	*/
 	
 	
 	// Slower merge algorithm.
 	// Reads one tuple at a time from each sorted sublist of the relation
 	// and writes the min in the sortedRcsv or sortedScsv file.
+	/*
 	public void mergeAlternative(String csvfile, String relationName,
 			int a, int m, String tempDir, String sortedRelationCSV) {
 		
@@ -230,7 +235,7 @@ public class SortMergeJoin {
 		System.out.println("relation " + relationName + " number of sublists: " + number_of_sublists);
 		System.out.println();
 		
-		/*** Merge the sorted sublist files into one sorted file. ***/
+		// Merge the sorted sublist files into one sorted file.
 		
 		BufferedWriter bw = Utilities.createBufferedWriter(tempDir + "/" + sortedRelationCSV);
 		List<BufferedReader> brs = new ArrayList<BufferedReader>();
@@ -291,6 +296,7 @@ public class SortMergeJoin {
 		Utilities.closeBufferedWriter(bw);
 		
 	}
+	*/
 	
 	
 	/** This function gets as an input two sorted relation files. **/

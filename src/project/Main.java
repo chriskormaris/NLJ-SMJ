@@ -1,13 +1,3 @@
-/**
- * ATHENS UNIVERSITY OF ECONOMICS & BUSINESS 
- * MSc in Computer Science
- * Course: Theory & Fundamentals of Database Systems
- * 
- * Students: Chris Kormaris, Konstantinos Korovesis
- * 
- * Deadline: January 19, 2017
- */
-
 package project;
 
 /** Memory restriction implementation, using batch files. **/
@@ -37,43 +27,43 @@ public class Main {
 						}
 						csvfile1 = args[i+1];
 				    }
-				    if (args[i].equals("-f2")){
+				    if (args[i].equals("-f2")) {
 						if (i == args.length-1) {
 							throw new Exception("Improper use of -f2. It should not be the last argument!");
 						}
 						csvfile2 = args[i+1];
 				    }
-				    if (args[i].equals("-a1")){
+				    if (args[i].equals("-a1")) {
 						if (i == args.length-1) {
 							throw new Exception("Improper use of -a1. It should not be the last argument!");
 						}
 						a1 = Integer.parseInt(args[i+1]);
 				    }
-				    if (args[i].equals("-a2")){
+				    if (args[i].equals("-a2")) {
 						if (i == args.length-1) {
 							throw new Exception("Improper use of -a2. It should not be the last argument!");
 						}
 						a2 = Integer.parseInt(args[i+1]);
 				    }
-				    if (args[i].equals("-j")){
+				    if (args[i].equals("-j")) {
 						if (i == args.length-1) {
 							throw new Exception("Improper use of -j. It should not be the last argument!");
 						}
 						joinAlgorithm = args[i+1];
 				    }
-				    if (args[i].equals("-m")){
+				    if (args[i].equals("-m")) {
 						if (i == args.length-1) {
 							throw new Exception("Improper use of -m. It should not be the last argument!");
 						}
 						memory = Integer.parseInt(args[i+1]);
 				    }
-				    if (args[i].equals("-t")){
+				    if (args[i].equals("-t")) {
 						if (i == args.length-1) {
 							throw new Exception("Improper use of -t. It should not be the last argument!");
 						}
 						tempDir = args[i+1];
 				    }
-				    if (args[i].equals("-o")){
+				    if (args[i].equals("-o")) {
 						if (i == args.length-1) {
 							throw new Exception("Improper use of -o. It should not be the last argument!");
 						}

@@ -47,32 +47,14 @@ public class RelationMergeThread extends Thread {
 		// each time we double the length until we reach size T1.
 		int sublistSize = m;
 		while (sublistSize <= total_records) { // merge iterations
-						
-			int team1SublistCounter = 0;
-			int team2SublistCounter = (int) Math.ceil(((double) number_of_sublists / 2));
 			
-			int number_of_team1_sublists = team2SublistCounter;
-			int number_of_team2_sublists = number_of_sublists - number_of_team1_sublists;
-			
-			System.out.println();
-			
-			// Sometimes team 1 may have one more sublist than team 2.
-			// In that case we do nothing for the last team1Sublist
-			// in the current iteration.
-			
-			for (int i=0; i<number_of_team2_sublists; i++) { // iterate floor(T1sublists/2) times
-				
-				Thread sublistThread = new SublistMergeThread(a, relationName, team1SublistCounter, 
-						team2SublistCounter, tempDir);
-				sublistThread.run();
-				
-				team1SublistCounter++;
-				team2SublistCounter++;
-			}
+			MergeIterationThread iterationThread = new MergeIterationThread(a, number_of_sublists, relationName, tempDir);
+			iterationThread.run();
 			
 			number_of_sublists = (int) Math.ceil((double) number_of_sublists / 2);
 			sublistSize = sublistSize * 2;
 		}
+		
 		Utilities.renameFile(tempDir + "/" + relationName + "Sublist0", tempDir + "/" + sortedRelationCSV);
 	
 	}

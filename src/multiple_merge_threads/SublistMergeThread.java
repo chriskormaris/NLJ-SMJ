@@ -44,7 +44,7 @@ public class SublistMergeThread extends Thread {
 		boolean firstTime = true;
 		BufferedReader br1 = Utilities.createBufferedReader(tempDir + "/" + team1Sublist);
 		BufferedReader br2 = Utilities.createBufferedReader(tempDir + "/" + team2Sublist);
-		BufferedWriter bw = Utilities.createBufferedWriter(tempDir + "/" + relationName + "_MERGE_RESULT");
+		BufferedWriter bw = Utilities.createBufferedWriter(tempDir + "/" + team1Sublist + "_" + team2Sublist + "_MERGE_RESULT");
 
 		while (!(team1Tuple == null && team2Tuple == null)
 				|| firstTime) {
@@ -72,7 +72,7 @@ public class SublistMergeThread extends Thread {
 				minTuple = team2Tuple;
 				lastTupleFetchedFromTeam1Sublist = false;
 			}
-								
+			
 			if (team1Tuple != null || team2Tuple != null)
 				Utilities.writeTupleToFile(bw, minTuple);
 							
@@ -81,7 +81,7 @@ public class SublistMergeThread extends Thread {
 		Utilities.closeBufferedReader(br2);
 		Utilities.closeBufferedWriter(bw);
 
-		Utilities.renameFile(tempDir + "/" + relationName + "_MERGE_RESULT", tempDir + "/" + team1Sublist);
+		Utilities.renameFile(tempDir + "/" + team1Sublist + "_" + team2Sublist + "_MERGE_RESULT", tempDir + "/" + team1Sublist);
 		
 		Utilities.deleteFile(tempDir + "/" + team2Sublist);
 	}
