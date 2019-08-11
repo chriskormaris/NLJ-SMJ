@@ -128,7 +128,7 @@ In all the executions done, memory does not exceed the limit of 200 buffers. In 
   </tr>
 </table>
 
-The following table contains the results of the implementation that uses threads. Threads are only used by the SMJ algorithm:
+The following table contains the results of the implementation that uses 2 threads. Threads are only used by the SMJ algorithm:
 
 #### "joinalgsUsingThreads.jar" results
 <table>
@@ -146,6 +146,27 @@ The following table contains the results of the implementation that uses threads
   </tr>
   <tr>
     <td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>0.936 sec</td><td>321</td><td>51MB</td>
+  </tr>
+</table>
+
+The following table contains the results of the implementation that uses multiple threads, for the 2-phase sort-merge method. This approach is the fastest achieved:
+
+#### "joinalgsMultipleMergeThreads.jar" results
+<table>
+  <tr>
+    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
+  </tr>
+  <tr>
+    <td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>1.653 sec</td><td>1997</td><td>24MB</td>
+  </tr>
+  <tr>
+    <td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>1.364 sec</td><td>1126</td><td>15MB</td>
+  </tr>
+  <tr>
+    <td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>4.294 sec</td><td>167</td><td>65MB</td>
+  </tr>
+  <tr>
+    <td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>0.618 sec</td><td>321</td><td>58MB</td>
   </tr>
 </table>
 
