@@ -370,6 +370,7 @@ public class SortMergeJoin {
 	
 	
 	/** SMJ that does not use sublist files. **/
+	/*
 	public void sortJoin(Tuple[] R, Tuple[] S, int a1, int a2, String outputFile) {
 
 		Arrays.sort(R, new TupleComparator(a1));
@@ -420,6 +421,6 @@ public class SortMergeJoin {
 	
 		Utilities.closeBufferedWriter(bw);
 	}
-	
+	*/
 	
 }
