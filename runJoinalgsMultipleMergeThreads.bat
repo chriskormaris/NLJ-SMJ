@@ -1,3 +1,5 @@
+:: THIS IS THE FASTEST EQUI-JOIN SMJ ALGORITHM!
+
 :: run equi-join 5
 java -jar joinalgsMultipleMergeThreads.jar -f1 testdata\D.csv -a1 3 -f2 testdata\C.csv -a2 0 -j SMJ -m 200 -t tmp -o results\results5.csv
 pause;
