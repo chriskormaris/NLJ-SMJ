@@ -104,31 +104,67 @@ In all the executions done, memory does not exceed the limit of 200 buffers. In 
 #### "joinalgs.jar" results
 <table>
   <tr>
-    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
+    <th>#</th>
+    <th>Equi-Join arguments</th>
+    <th>Execution Time</th>
+    <th>Tuples</th>
+    <th>Memory</th>
   </tr>
   <tr>
-    <td>1</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: NLJ</td><td>5.328 sec</td><td>1997</td><td>28MB</td>
+    <td>1</td>
+    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: NLJ</td>
+    <td>5.328 sec</td>
+    <td>1997</td>
+    <td>28MB</td>
   </tr>
   <tr>
-    <td>2</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: NLJ</td><td>3.592 sec</td><td>1126</td><td>69MB</td>
+    <td>2</td>
+    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: NLJ</td>
+    <td>3.592 sec</td>
+    <td>1126</td>
+    <td>69MB</td>
   </tr>
   <tr>
-    <td>3</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: NLJ</td><td>0.798 sec</td><td>167</td><td>29MB</td>
+    <td>3</td>
+    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: NLJ</td>
+    <td>0.798 sec</td>
+    <td>167</td>
+    <td>29MB</td>
   </tr>
   <tr>
-    <td>4</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: NLJ</td><td>2.026 sec</td><td>321</td><td>94MB</td>
+    <td>4</td>
+    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: NLJ</td>
+    <td>2.026 sec</td>
+    <td>321</td>
+    <td>94MB</td>
   </tr>
   <tr>
-    <td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>1.781 sec</td><td>1997</td><td>75MB</td>
+    <td>5</td>
+    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
+    <td>1.781 sec</td>
+    <td>1997</td>
+    <td>75MB</td>
   </tr>
   <tr>
-    <td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>1.666 sec</td><td>1126</td><td>9MB</td>
+    <td>6</td>
+    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
+    <td>1.666 sec</td>
+    <td>1126</td>
+    <td>9MB</td>
   </tr>
   <tr>
-    <td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>5.814 sec</td><td>167</td><td>13MB</td>
+    <td>7</td>
+    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
+    <td>5.814 sec</td>
+    <td>167</td>
+    <td>13MB</td>
   </tr>
   <tr>
-    <td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>0.947 sec</td><td>321</td><td>49MB</td>
+    <td>8</td>
+    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
+    <td>0.947 sec</td>
+    <td>321</td>
+    <td>49MB</td>
   </tr>
 </table>
 
@@ -137,19 +173,39 @@ The following table contains the results of the implementation that uses 2 threa
 #### "joinalgsUsingThreads.jar" results
 <table>
   <tr>
-    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
+    <th>#</th>
+    <th>Equi-Join arguments</th>
+    <th>Execution Time</th>
+    <th>Tuples</th>
+    <th>Memory</th>
   </tr>
   <tr>
-    <td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>2.364 sec</td><td>1997</td><td>79MB</td>
+    <td>5</td>
+    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
+    <td>2.364 sec</td>
+    <td>1997</td>
+    <td>79MB</td>
   </tr>
   <tr>
-    <td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>2.227 sec</td><td>1126</td><td>1MB</td>
+    <td>6</td>
+    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
+    <td>2.227 sec</td>
+    <td>1126</td>
+    <td>1MB</td>
   </tr>
   <tr>
-    <td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>6.606 sec</td><td>167</td><td>68MB</td>
+    <td>7</td>
+    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
+    <td>6.606 sec</td>
+    <td>167</td>
+    <td>68MB</td>
   </tr>
   <tr>
-    <td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>0.936 sec</td><td>321</td><td>51MB</td>
+    <td>8</td>
+    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
+    <td>0.936 sec</td>
+    <td>321</td>
+    <td>51MB</td>
   </tr>
 </table>
 
@@ -158,19 +214,39 @@ The following table contains the results of the implementation that uses multipl
 #### "joinalgsMultipleMergeThreads.jar" results
 <table>
   <tr>
-    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
+    <th>#</th>
+    <th>Equi-Join arguments</th>
+    <th>Execution Time</th>
+    <th>Tuples</th>
+    <th>Memory</th>
   </tr>
   <tr>
-    <td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>1.653 sec</td><td>1997</td><td>24MB</td>
+    <td>5</td>
+    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
+    <td>1.653 sec</td>
+    <td>1997</td>
+    <td>24MB</td>
   </tr>
   <tr>
-    <td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>1.364 sec</td><td>1126</td><td>15MB</td>
+    <td>6</td>
+    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
+    <td>1.364 sec</td>
+    <td>1126</td>
+    <td>15MB</td>
   </tr>
   <tr>
-    <td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>4.294 sec</td><td>167</td><td>65MB</td>
+    <td>7</td>
+    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
+    <td>4.294 sec</td>
+    <td>167</td>
+    <td>65MB</td>
   </tr>
   <tr>
-    <td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>0.618 sec</td><td>321</td><td>58MB</td>
+    <td>8</td>
+    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
+    <td>0.618 sec</td>
+    <td>321</td>
+    <td>58MB</td>
   </tr>
 </table>
 
@@ -179,38 +255,78 @@ These are the results produced while running the equi-join algorithms by using a
 #### "joinalgsAlternativeMerge.jar" result
 <table>
   <tr>
-    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
+    <th>#</th>
+    <th>Equi-Join arguments</th>
+    <th>Execution Time</th>
+    <th>Tuples</th>
+    <th>Memory</th>
   </tr>
   <tr>
-    <td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>7.439 sec</td><td>1997</td><td>61MB</td>
+    <td>5</td>
+    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
+    <td>7.439 sec</td>
+    <td>1997</td>
+    <td>61MB</td>
   </tr>
   <tr>
-    <td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>5.468 sec</td><td>1126</td><td>50MB</td>
+    <td>6</td>
+    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
+    <td>5.468 sec</td>
+    <td>1126</td>
+    <td>50MB</td>
   </tr>
   <tr>
-    <td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>127.163 sec (2.12 min)</td><td>167</td><td>49MB</td>
+    <td>7</td>
+    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
+    <td>127.163 sec (2.12 min)</td>
+    <td>167</td>
+    <td>49MB</td>
   </tr>
   <tr>
-    <td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>1.575 sec</td><td>321</td><td>50MB</td>
+    <td>8</td>
+    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
+    <td>1.575 sec</td>
+    <td>321</td>
+    <td>50MB</td>
   </tr>
 </table>
 
 #### "joinalgsAlternativeMergeUsingThreads.jar" results
 <table>
   <tr>
-    <th>#</th><th>Equi-Join arguments</th><th>Execution Time</th><th>Tuples</th><th>Memory</th>
+    <th>#</th>
+    <th>Equi-Join arguments</th>
+    <th>Execution Time</th>
+    <th>Tuples</th>
+    <th>Memory</th>
   </tr>
   <tr>
-    <td>5</td><td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td><td>6.726 sec</td><td>1997</td><td>26MB</td>
+    <td>5</td>
+    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
+    <td>6.726 sec</td>
+    <td>1997</td>
+    <td>26MB</td>
   </tr>
   <tr>
-    <td>6</td><td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td><td>5.562 sec</td><td>1126</td><td>48MB</td>
+    <td>6</td>
+    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
+    <td>5.562 sec</td>
+    <td>1126</td>
+    <td>48MB</td>
   </tr>
   <tr>
-    <td>7</td><td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td><td>114.765 sec (1.919 min)</td><td>167</td><td>59MB</td>
+    <td>7</td>
+    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
+    <td>114.765 sec (1.919 min)</td>
+    <td>167</td>
+    <td>59MB</td>
   </tr>
   <tr>
-    <td>8</td><td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td><td>1.213 sec</td><td>321</td><td>61MB</td>
+    <td>8</td>
+    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
+    <td>1.213 sec</td>
+    <td>321</td>
+    <td>61MB</td>
   </tr>
 </table>
 
