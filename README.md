@@ -215,7 +215,7 @@ These are the results produced while running the equi-join algorithms by using a
 </table>
 
 #### Notes
-* The equi-join experiments were all run on a 4-core computer with hyper-threads (4 cores + 4 virtual cores = 8 cores)!
+* All equi-join experiments have been done on a 4-core computer with hyper-threads (4 cores + 4 virtual cores = 8 cores).
 * If you want to make any comparisons between the execution times, you must run all experiments on a similar system each time.
 
 #### Observations
