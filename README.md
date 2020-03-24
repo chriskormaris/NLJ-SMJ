@@ -101,7 +101,7 @@ I have also included a java class that creates a ".csv" relation file, containin
 
 In all the executions done, memory does not exceed the limit of 200 buffers. In the following table, the execution time of some equi-joins are shown:
 
-#### "joinalgs.jar" results
+#### "joinalgs.jar" results:
 <table>
   <tr>
     <th>#</th>
@@ -170,7 +170,7 @@ In all the executions done, memory does not exceed the limit of 200 buffers. In 
 
 The following table contains the results of the implementation that uses 2 threads. Threads are only used by the SMJ algorithm:
 
-#### "joinalgsUsingThreads.jar" results
+#### "joinalgsUsingThreads.jar" results:
 <table>
   <tr>
     <th>#</th>
@@ -211,7 +211,7 @@ The following table contains the results of the implementation that uses 2 threa
 
 The following table contains the results of the implementation that uses multiple threads, for the 2-phase sort-merge method. This approach is the fastest achieved:
 
-#### "joinalgsMultipleMergeThreads.jar" results
+#### "joinalgsMultipleMergeThreads.jar" results:
 <table>
   <tr>
     <th>#</th>
@@ -252,7 +252,7 @@ The following table contains the results of the implementation that uses multipl
 
 These are the results produced while running the equi-join algorithms by using an alternative slower merge method:
 
-#### "joinalgsAlternativeMerge.jar" result
+#### "joinalgsAlternativeMerge.jar" results:
 <table>
   <tr>
     <th>#</th>
@@ -291,7 +291,7 @@ These are the results produced while running the equi-join algorithms by using a
   </tr>
 </table>
 
-#### "joinalgsAlternativeMergeUsingThreads.jar" results
+#### "joinalgsAlternativeMergeUsingThreads.jar" results:
 <table>
   <tr>
     <th>#</th>
