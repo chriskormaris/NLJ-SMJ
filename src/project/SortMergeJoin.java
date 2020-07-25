@@ -2,7 +2,6 @@ package project;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.util.Arrays;
 
 import multiple_merge_threads.RelationMergeThread;
 
@@ -18,7 +17,6 @@ public class SortMergeJoin {
 		
 		String relation1Name = Utilities.getCSVName(csvfile1);
 		String relation2Name = Utilities.getCSVName(csvfile2);
-		
 		
 		/*** run the 2-phase sort on R and S ***/
 		

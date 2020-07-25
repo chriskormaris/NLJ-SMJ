@@ -3,7 +3,7 @@ package project;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tuple {
+public class Tuple implements Comparable<Tuple> {
 	
 	private int number_of_attributes;
 	private String relationName;
@@ -99,6 +99,12 @@ public class Tuple {
 			}
 		}
 		return tuple;
+	}
+
+	@Override
+	public int compareTo(Tuple o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }

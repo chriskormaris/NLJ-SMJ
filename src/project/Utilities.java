@@ -110,6 +110,13 @@ public class Utilities {
 					
 					// sort the array using quicksort
 					Collections.sort(sublist, new TupleComparator(a));
+					
+					// TODO: ALTERNATIVE
+//					sublist = sublist.stream()
+//					  // sort based on join attribute a1 in descending order
+//					  .sorted(Comparator.comparing(Tuple::getAttributeValue))
+//					  .collect(Collectors.toList());
+					
 					writeRelationToFile(sublist, sublistFileName);
 					sublistCounter++;
 				}

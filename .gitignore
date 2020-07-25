@@ -23,3 +23,6 @@ hs_err_pid*
 
 #Added by user
 bin/
+.settings/
+Report.odt
+Report.pdf

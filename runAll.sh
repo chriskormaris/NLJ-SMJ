@@ -7,31 +7,31 @@ echo 'Running equi-joins using "joinalgs.jar"'
 printf '\n'
 # equi-join 1
 echo 'Running equi-join 1...'
-java -jar joinalgs.jar -f1 testdata/D.csv -a1 3 -f2 testdata/C.csv -a2 0 -j NLJ -m 200 -o results/results1.csv > runs/runEqui-Join1.txt
+java -jar joinalgs.jar -f1 testdata/D.csv -a1 3 -f2 testdata/C.csv -a2 0 -j NLJ -m 200 -o TESTING > runs/runEqui-Join1.txt
 # equi-join 2
 echo 'Running equi-join 2...'
-java -jar joinalgs.jar -f1 testdata/D.csv -a1 3 -f2 testdata/B.csv -a2 0 -j NLJ -m 200 -o results/results2.csv > runs/runEqui-Join2.txt
+java -jar joinalgs.jar -f1 testdata/D.csv -a1 3 -f2 testdata/B.csv -a2 0 -j NLJ -m 200 -o TESTING > runs/runEqui-Join2.txt
 # equi-join 3
 echo 'Running equi-join 3...'
-java -jar joinalgs.jar -f1 testdata/A.csv -a1 3 -f2 testdata/E.csv -a2 0 -j NLJ -m 200 -o results/results3.csv > runs/runEqui-Join3.txt
+java -jar joinalgs.jar -f1 testdata/A.csv -a1 3 -f2 testdata/E.csv -a2 0 -j NLJ -m 200 -o TESTING > runs/runEqui-Join3.txt
 # equi-join 4
 echo 'Running equi-join 4...'
-java -jar joinalgs.jar -f1 testdata/B.csv -a1 1 -f2 testdata/B.csv -a2 2 -j NLJ -m 200 -o results/results4.csv > runs/runEqui-Join4.txt
+java -jar joinalgs.jar -f1 testdata/B.csv -a1 1 -f2 testdata/B.csv -a2 2 -j NLJ -m 200 -o TESTING > runs/runEqui-Join4.txt
 # equi-join 5
 echo 'Running equi-join 5...'
-java -jar joinalgs.jar -f1 testdata/D.csv -a1 3 -f2 testdata/C.csv -a2 0 -j SMJ -m 200 -t tmp -o results/results5.csv > runs/runEqui-Join5.txt
+java -jar joinalgs.jar -f1 testdata/D.csv -a1 3 -f2 testdata/C.csv -a2 0 -j SMJ -m 200 -t tmp -o TESTING > runs/runEqui-Join5.txt
 # equi-join 6
 echo 'Running equi-join 6...'
-java -jar joinalgs.jar -f1 testdata/D.csv -a1 3 -f2 testdata/B.csv -a2 0 -j SMJ -m 200 -t tmp -o results/results6.csv > runs/runEqui-Join6.txt
+java -jar joinalgs.jar -f1 testdata/D.csv -a1 3 -f2 testdata/B.csv -a2 0 -j SMJ -m 200 -t tmp -o TESTING > runs/runEqui-Join6.txt
 # equi-join 7
 echo 'Running equi-join 7...'
-java -jar joinalgs.jar -f1 testdata/A.csv -a1 3 -f2 testdata/E.csv -a2 0 -j SMJ -m 200 -t tmp -o results/results7.csv > runs/runEqui-Join7.txt
+java -jar joinalgs.jar -f1 testdata/A.csv -a1 3 -f2 testdata/E.csv -a2 0 -j SMJ -m 200 -t tmp -o TESTING > runs/runEqui-Join7.txt
 # equi-join 8
 echo 'Running equi-join 8...'
-java -jar joinalgs.jar -f1 testdata/B.csv -a1 1 -f2 testdata/B.csv -a2 2 -j SMJ -m 200 -t tmp -o results/results8.csv > runs/runEqui-Join8.txt
+java -jar joinalgs.jar -f1 testdata/B.csv -a1 1 -f2 testdata/B.csv -a2 2 -j SMJ -m 200 -t tmp -o TESTING > runs/runEqui-Join8.txt
 printf '\n'
 
-## joinalgsUsingThreads.jar -> THE FASTEST!
+## joinalgsUsingThreads.jar
 echo 'Running equi-joins using "joinalgsUsingThreads.jar"'
 printf '\n'
 # equi-join 5
@@ -48,7 +48,7 @@ echo 'Running equi-join 8...'
 java -jar joinalgsUsingThreads.jar -f1 testdata/B.csv -a1 1 -f2 testdata/B.csv -a2 2 -j SMJ -m 200 -t tmp -o TESTING > runsUsingThreads/runEqui-Join8.txt
 printf '\n'
 
-## joinalgsAlternativeMerge.jar -> THE SLOWEST!
+## joinalgsAlternativeMerge.jar
 echo 'Running equi-joins using "joinalgsAlternativeMerge.jar"'
 printf '\n'
 # equi-join 5
