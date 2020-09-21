@@ -43,25 +43,35 @@ For example, in order to join two relations stored in files “R.csv” and “S
 ```java
 java –jar joinalgs.jar –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
 ```
+
 or
+
 ```java
 java –jar joinalgsUsingThreads.jar –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
 ```
+
 or
+
 ```java
 java –jar joinalgsMultipleMergeThreads.jar –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
 ```
+
 or
+
 ```java
 java –jar joinalgsAlternativeMerge.jar –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
 ```
+
 or
+
 ```java
 java –jar joinalgsAlternativeMergeUsingThreads.jar –f1 R.csv –a1 0 –f2 S.csv –a2 1 –j SMJ –m 200 –t tmp –o results.csv
 ```
 
+---
 
 **These are the classes of the project:**
+
 
 **Main:** It parses the arguments of the user. Executes SMJ or NLJ accordingly.
 
@@ -71,7 +81,7 @@ java –jar joinalgsAlternativeMergeUsingThreads.jar –f1 R.csv –a1 0 –f2 S
 
 **TupleComparator:** It is used to sort the sublists of tuple objects, based on a given attribute, during SMJ.
 
-**SortMergeJoin:**  It contains the implementation of the non-efficient SMJ. The sorting phase of the 2-phase sort does not exceed m buffers, in any case. In order to return to previous tuples of a relation  (when many tuples to be joined, match on the specific attribute column), the **mark()** **reset()** methods of the **Buffered Reader** library are used. Each sublist is sorted using the **sort** method of the **Collections** library. The merge phase of the external sorting algorithm has been implemented. There's also included an alternative slower approach for the merge phase (its use is inside comments).
+**SortMergeJoin:**  It contains the implementation of the non-efficient SMJ. The sorting phase of the 2-phase sort does not exceed **m** buffers, in any case. In order to return to previous tuples of a relation  (when many tuples to be joined, match on the specific attribute column), the **mark()** **reset()** methods of the **Buffered Reader** library are used. Each sublist is sorted using the **sort** method of the **Collections** library. The merge phase of the external sorting algorithm has been implemented. There's also included an alternative slower approach for the merge phase (its use is inside comments).
 
 **NestedLoopJoin:** It contains the implementation of the NLJ. The blocked NLJ algorithm is used. The smaller relation is chosen to be iterated in the outer while loop. Super-naive NLJ implementation is also included as an alternative, but it is not used.
 
@@ -86,20 +96,22 @@ For the SMJ algorithm, there is also included a thread implementation. During th
 
 **MergeAlternativeThread:** It reads one tuple at a time from each sorted sublist of the relation and writes the minimum in the sorted relation file. The algorithm proceeds to compare the next tuple from sublist that the last one was fetched from. The sorting finishes when all tuples have been written in the result file.
 
-
-I have also included a java class that creates a ".csv" relation file, containing random integers.
+I have also included a java class that creates a ".csv" relation file, containing random integers:
 
 **CreateRandomRelation:** Provide the filename of your choice ending with the ".csv" extension and the number of tuples the relation will contain. This program creates a relation file with 4 columns (or any number), which can be used later for the joins.
 
+
 #### Notes
 
-* Please note that the “.csv” relations to be joined, should be copied in the **“testdata”** folder.
-* The console output of each run can be found in these folders: **“runs”**, **“runsUsingThreads”**, **“runsAlternativeMerge”**, **“runsAlternativeMergeUsingThreads”**
+* The threads are only used for the SMJ algorithm.
+* Please note that the “.csv” relations to be joined, should be copied in the **testdata** folder.
+* The console output of each run can be found in these folders: **runs**, **runsUsingThreads**, **runsAlternativeMerge**, **runsAlternativeMergeUsingThreads**
 
+---
 
 ### Execution times
 
-In all the executions done, memory does not exceed the limit of 200 buffers. In the following table, the execution time of some equi-joins are shown:
+In all the executions done, memory does not exceed the limit of 200 buffers. In the following table, the execution times of some equi-joins are shown:
 
 #### "joinalgs.jar" results:
 <table>
@@ -168,47 +180,6 @@ In all the executions done, memory does not exceed the limit of 200 buffers. In 
   </tr>
 </table>
 
-The following table contains the results of the implementation that uses 2 threads. Threads are only used by the SMJ algorithm:
-
-#### "joinalgsUsingThreads.jar" results:
-<table>
-  <tr>
-    <th>#</th>
-    <th>Equi-Join arguments</th>
-    <th>Execution Time</th>
-    <th>Tuples</th>
-    <th>Memory</th>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
-    <td>2.364 sec</td>
-    <td>1997</td>
-    <td>79MB</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
-    <td>2.227 sec</td>
-    <td>1126</td>
-    <td>1MB</td>
-  </tr>
-  <tr>
-    <td>7</td>
-    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
-    <td>6.606 sec</td>
-    <td>167</td>
-    <td>68MB</td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
-    <td>0.936 sec</td>
-    <td>321</td>
-    <td>51MB</td>
-  </tr>
-</table>
-
 The following table contains the results of the implementation that uses multiple threads, for the 2-phase sort-merge method. **This approach is the fastest achieved:**
 
 #### "joinalgsMultipleMergeThreads.jar" results:
@@ -247,6 +218,47 @@ The following table contains the results of the implementation that uses multipl
     <td>0.618 sec</td>
     <td>321</td>
     <td>58MB</td>
+  </tr>
+</table>
+
+The following table contains the results of the implementation that uses only 2 threads, for the 2-phase sort-merge method:
+
+#### "joinalgsUsingThreads.jar" results:
+<table>
+  <tr>
+    <th>#</th>
+    <th>Equi-Join arguments</th>
+    <th>Execution Time</th>
+    <th>Tuples</th>
+    <th>Memory</th>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
+    <td>2.364 sec</td>
+    <td>1997</td>
+    <td>79MB</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
+    <td>2.227 sec</td>
+    <td>1126</td>
+    <td>1MB</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
+    <td>6.606 sec</td>
+    <td>167</td>
+    <td>68MB</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
+    <td>0.936 sec</td>
+    <td>321</td>
+    <td>51MB</td>
   </tr>
 </table>
 
