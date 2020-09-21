@@ -209,7 +209,7 @@ The following table contains the results of the implementation that uses 2 threa
   </tr>
 </table>
 
-The following table contains the results of the implementation that uses multiple threads, for the 2-phase sort-merge method. This approach is the fastest achieved:
+The following table contains the results of the implementation that uses multiple threads, for the 2-phase sort-merge method. **This approach is the fastest achieved:**
 
 #### "joinalgsMultipleMergeThreads.jar" results:
 <table>
