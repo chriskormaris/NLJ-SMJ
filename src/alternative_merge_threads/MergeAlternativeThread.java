@@ -1,28 +1,34 @@
 package alternative_merge_threads;
 
+import project.Tuple;
+import project.Utilities;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import project.Tuple;
-import project.Utilities;
-
 // Slower merge algorithm.
 // Reads one tuple at a time from each sorted sublist of the relation
 // and writes the min in the sortedRcsv or sortedScsv file.
 public class MergeAlternativeThread extends Thread {
 
-	String csvfile;
-	String relationName;
-	int a;
-	int m;
-	String tempDir;
-	String sortedRelationCSV;
+	private final String csvfile;
+	private final String relationName;
+	private final int a;
+	private final int m;
+	private final String tempDir;
+	private final String sortedRelationCSV;
 	
-	public MergeAlternativeThread(String csvfile, String relationName,
-			int a, int m, String tempDir, String sortedRelationCSV) {
+	public MergeAlternativeThread(
+			String csvfile,
+			String relationName,
+			int a,
+			int m,
+			String tempDir,
+			String sortedRelationCSV
+	) {
 		
 		this.csvfile = csvfile;
 		this.relationName = relationName;

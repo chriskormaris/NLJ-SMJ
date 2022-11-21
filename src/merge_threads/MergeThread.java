@@ -1,10 +1,10 @@
 package merge_threads;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-
 import project.Tuple;
 import project.Utilities;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 
 // This is the merging phase of the external sorting algorithm.
 // Splits the sublists to 2 teams.
@@ -15,15 +15,14 @@ import project.Utilities;
 // http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm
 public class MergeThread extends Thread {
 
-	String csvfile;
-	String relationName;
-	int a;
-	int m;
-	String tempDir;
-	String sortedRelationCSV;
+	private final String csvfile;
+	private final String relationName;
+	private final int a;
+	private final int m;
+	private final String tempDir;
+	private final String sortedRelationCSV;
 	
-	public MergeThread(String csvfile, String relationName,
-			int a, int m, String tempDir, String sortedRelationCSV) {
+	public MergeThread(String csvfile, String relationName, int a, int m, String tempDir, String sortedRelationCSV) {
 		
 		this.csvfile = csvfile;
 		this.relationName = relationName;

@@ -11,15 +11,21 @@ import project.Utilities;
 // http://faculty.simpson.edu/lydia.sinapova/www/cmsc250/LN250_Weiss/L17-ExternalSortEX1.htm
 public class RelationMergeThread extends Thread {
 
-	String csvfile;
-	String relationName;
-	int a;
-	int m;
-	String tempDir;
-	String sortedRelationCSV;
+	private final String csvfile;
+	private final String relationName;
+	private final int a;
+	private final int m;
+	private final String tempDir;
+	private final String sortedRelationCSV;
 	
-	public RelationMergeThread(String csvfile, String relationName,
-			int a, int m, String tempDir, String sortedRelationCSV) {
+	public RelationMergeThread(
+			String csvfile,
+			String relationName,
+			int a,
+			int m,
+			String tempDir,
+			String sortedRelationCSV
+	) {
 		
 		this.csvfile = csvfile;
 		this.relationName = relationName;

@@ -4,16 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MergeIterationThread extends Thread {
-	
-	int a;
-	int number_of_sublists;
-	String relationName;
-	String tempDir;
-	
-	public MergeIterationThread() {
-		
-	}
-	
+
+	private final int a;
+	private final int number_of_sublists;
+	private final String relationName;
+	private final String tempDir;
+
 	public MergeIterationThread(int a, int number_of_sublists, String relationName, String tempDir) {
 		this.a = a;
 		this.number_of_sublists = number_of_sublists;

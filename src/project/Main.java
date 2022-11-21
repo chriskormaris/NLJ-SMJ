@@ -4,7 +4,7 @@
  * Course: Theory & Fundamentals of Database Systems
  * 
  * Students: Chris Kormaris, Konstantinos Korovesis
- * 
+ *
  * Deadline: January 19, 2017
  */
 
@@ -101,7 +101,7 @@ public class Main {
 		int T2 = Utilities.getNumberOfRecords(csvfile2); // number of records in relation2
 
 		
-//		System.out.println();
+		// System.out.println();
 		
 		System.out.println("relation " + relation1Name + " number of records: " + T1);
 		System.out.println("relation " + relation2Name + " number of records: " + T2);
@@ -147,10 +147,8 @@ public class Main {
 			
 			// Nested Loop Join R, S on a1=a2
 			long nljStartTime = System.currentTimeMillis();
-//			nlj.nestedLoopJoin(csvfile1, csvfile2,
-//					a1, a2, outputFile);
-			nlj.blockedNestedLoopJoin(csvfile1, csvfile2,
-					a1, a2, memory, outputFile);
+			// nlj.nestedLoopJoin(csvfile1, csvfile2, a1, a2, outputFile);
+			nlj.blockedNestedLoopJoin(csvfile1, csvfile2, a1, a2, memory, outputFile);
 			long nljTotalTime = System.currentTimeMillis() - nljStartTime;
 			double nljTotalTimeInSec = (double) nljTotalTime / 1000;
 			

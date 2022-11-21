@@ -10,17 +10,16 @@ public class NestedLoopJoin {
 	
 	/** NLJ that is memory friendly. 
 	 * We assume that T(R) = B(R) and T(S) = B(S),
-	 * which means that each block contains exactly one record.
-	 * **/
-	public void blockedNestedLoopJoin(String csvfile1, String csvfile2,
-			int a1, int a2, int m, String outputFile) {
+	 * which means that each block contains exactly one record. **/
+	public void blockedNestedLoopJoin(String csvfile1, String csvfile2, int a1, int a2, int m, String outputFile) {
 		
 		Utilities.createNewFile(outputFile);
-		
-		// We want relation1 to be the smaller one to create less blocks.
-		// relation1 will be the outer relation
-		int T1 = Utilities.getNumberOfRecords(csvfile1); // number of records of relation1
-		int T2 = Utilities.getNumberOfRecords(csvfile2); // number of records of relation2
+
+		int T1 = Utilities.getNumberOfRecords(csvfile1); // number of records of "relation1"
+		int T2 = Utilities.getNumberOfRecords(csvfile2); // number of records of "relation2"
+
+		// We want "relation1" to be the smaller one, in order to create fewer blocks.
+		// "relation1" will be the outer relation.
 		if (T2 < T1) {
 			String tempString = csvfile1;
 			csvfile1 = csvfile2;
@@ -29,36 +28,27 @@ public class NestedLoopJoin {
 			int tempInteger = a1;
 			a1 = a2;
 			a2 = tempInteger;
-			
-			tempInteger = T1;
-			T1 = T2;
-			T2 = tempInteger;
 		}
-		
+
 		// get the name of the 1st relation from the csv file name
 		String relation1Name = Utilities.getCSVName(csvfile1);
-		
+
 		// get the name of the 2nd relation from the csv file name
 		String relation2Name = Utilities.getCSVName(csvfile2);
-		
-		if (T2 >= T1) {
-			System.out.println("Outer relation is: " + relation1Name);
-			System.out.println("Inner relation is: " + relation2Name);
-		} else {
-			System.out.println("Outer relation is: " + relation2Name);
-			System.out.println("Inner relation is: " + relation1Name);
-		}
-		
+
+		System.out.println("Outer relation is: " + relation1Name);
+		System.out.println("Inner relation is: " + relation2Name);
+
 		BufferedReader br1 = Utilities.createBufferedReaderAndSkipFirstLine(csvfile1);
 		BufferedReader br2 = Utilities.createBufferedReaderAndSkipFirstLine(csvfile2);
 		BufferedWriter bw = Utilities.createBufferedWriter(outputFile);
 		boolean firstTuple = true; // used to print the header
 
 		// block of relation1 (outer relation with less records than relation2)
-		List<Tuple> R = new ArrayList<Tuple>();
+		List<Tuple> R = new ArrayList<>();
 		
-		Tuple r = null;
-		Tuple s = null;
+		Tuple r;
+		Tuple s;
 		int PR=0; // pointer for relation1
 		while ((r = Utilities.getNextTuple(br1, relation1Name)) != null) {
 			
@@ -111,10 +101,10 @@ public class NestedLoopJoin {
 		BufferedReader br1 = Utilities.createBufferedReaderAndSkipFirstLine(csvfile1);
 		BufferedReader br2 = Utilities.createBufferedReaderAndSkipFirstLine(csvfile2);
 		BufferedWriter bw = Utilities.createBufferedWriter(outputFile);
-		boolean firstTuple = true; // used to print the header
+		boolean firstTuple = true;  // used to print the header
 
-		Tuple r = null;
-		Tuple s = null;
+		Tuple r;
+		Tuple s;
 		while ((r = Utilities.getNextTuple(br1, relation1Name)) != null) {
 			while ( (s = Utilities.getNextTuple(br2, relation2Name)) != null) {
 				if (r.getAttribute(a1).getValue() == s.getAttribute(a2).getValue()) {
