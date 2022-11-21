@@ -3,7 +3,6 @@ package project;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,7 +39,7 @@ public class Utilities {
 					counter++;
 				}
 			}
-			else if (i == joinColumn) {
+			else {
 				joinTuple.attributes.add(t1.getAttribute(a1));
 				joinTuple.setAttributeName(joinColumn, t1.getRelationName() + a1
 						+ "=" + t2.getRelationName() + a2);
@@ -79,7 +78,7 @@ public class Utilities {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(csvfile));
 			
-			String line = br.readLine(); // the first line contains the number of records
+			String line = br.readLine();  // the first line contains the number of records
 			int number_of_tuples = Integer.parseInt(line);
 			
 			int tupleCounter = 0;
@@ -112,10 +111,10 @@ public class Utilities {
 					Collections.sort(sublist, new TupleComparator(a));
 					
 					// TODO: ALTERNATIVE
-//					sublist = sublist.stream()
-//					  // sort based on join attribute a1 in descending order
-//					  .sorted(Comparator.comparing(Tuple::getAttributeValue))
-//					  .collect(Collectors.toList());
+					// sublist = sublist.stream()
+					//   // sort based on join attribute a1 in descending order
+					//   .sorted(Comparator.comparing(Tuple::getAttributeValue))
+					//   .collect(Collectors.toList());
 					
 					writeRelationToFile(sublist, sublistFileName);
 					sublistCounter++;
@@ -125,12 +124,10 @@ public class Utilities {
 			}
 			
 			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 	
 	
@@ -187,12 +184,10 @@ public class Utilities {
 			}
 			
 			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 	
 	
@@ -205,8 +200,6 @@ public class Utilities {
 			String line = br.readLine();
 			number_of_records = Integer.parseInt(line);
 			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -222,8 +215,6 @@ public class Utilities {
 				lines++;
 			}
 			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -239,8 +230,6 @@ public class Utilities {
 				empty = false;
 			}
 			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -410,7 +399,7 @@ public class Utilities {
 			// which can be considered as the tuple size.
 			// Leave out two buffers for the tuples r & s.
 			br.mark(20 * (memory-2));
-//			System.out.println("BufferReader marked!");
+			// System.out.println("BufferReader marked!");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -488,7 +477,7 @@ public class Utilities {
 	// Reads a ".csv" relation file and creates a Tuple array with that data.
 	// It is useful for the sort-join algorithm which does not use sublists.
 	public static Tuple[] readCSVIntoArray(String csvfile) {
-//			System.out.print("Reading csv file: " + "\"" + csvfile + "\"" + "...");
+		// System.out.print("Reading csv file: " + "\"" + csvfile + "\"" + "...");
 
 		Tuple[] tupleArray = null;
 		
@@ -527,13 +516,11 @@ public class Utilities {
 			}
 			
 			br.close();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-//			System.out.println("[OK]");
+
+		// System.out.println("[OK]");
 		return tupleArray;
 	}
 		

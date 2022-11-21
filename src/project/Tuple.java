@@ -13,19 +13,19 @@ public class Tuple implements Comparable<Tuple> {
 	public Tuple() {
 		setNumberOfAttributes(4);
 		
-		attributes = new ArrayList<Attribute>();
+		attributes = new ArrayList<>();
 	}
 	
 	public Tuple(int number_of_attributes) {
 			this.number_of_attributes = number_of_attributes;
 			
-			attributes = new ArrayList<Attribute>();
+			attributes = new ArrayList<>();
 	}
 	
 	public Tuple(int number_of_attributes, String relationName) {
 		this.number_of_attributes = number_of_attributes;
 		this.relationName = relationName;
-		attributes = new ArrayList<Attribute>();
+		attributes = new ArrayList<>();
 	}
 	
 
