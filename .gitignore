@@ -26,3 +26,9 @@ bin/
 .settings/
 .classpath
 .project
+
+######################
+# Intellij
+######################
+.idea/
+*.iml
