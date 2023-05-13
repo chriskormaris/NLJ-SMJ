@@ -1,27 +1,12 @@
 # Nested Loop Join (NLJ) & Sort Merge Join (SMJ)
 
-By Christos Kormaris, August 2017
-**UPDATED August 2019:** Multiple threads implementation (as fast as can possibly be!)
+Programming Language: `Java`
 
-Programming Language: Java
+Made by Christos Kormaris, August 2017
 
+**UPDATED August 2019:**
 
-## HOT TO RUN IN ECLIPSE:
-
-1. Create a new Eclipse Java project.
-
-2. Copy all packages folders located in "src" folder of the repository to the src folder of the Eclipse project.
-
-3. Copy "testdata" folder to the Eclipse project root.
-
-4. Run “Main.java”. An exception will be thrown because we need to provide program arguments. To do so, go to:
-
-**Run → Run Configurations → select your run configuration from “Java Application” field → Arguments tab → Program arguments**
-
-The arguments that we must provide are explained further on.
-
-
-* Some ".jar" executables, compiled with Java 8, are included as well. Java 7 and above is required to run.
+Multiple threads implementation (as fast as can possibly be!)
 
 
 ## Description
@@ -114,233 +99,55 @@ I have also included a java class that creates a ".csv" relation file, containin
 In all the executions done, memory does not exceed the limit of 200 buffers. In the following table, the execution times of some equi-joins are shown:
 
 #### "joinalgs.jar" results:
-<table>
-  <tr>
-    <th>#</th>
-    <th>Equi-Join arguments</th>
-    <th>Execution Time</th>
-    <th>Tuples</th>
-    <th>Memory</th>
-  </tr>
-  <tr>
-    <td>1</td>
-    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: NLJ</td>
-    <td>5.328 sec</td>
-    <td>1997</td>
-    <td>28MB</td>
-  </tr>
-  <tr>
-    <td>2</td>
-    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: NLJ</td>
-    <td>3.592 sec</td>
-    <td>1126</td>
-    <td>69MB</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: NLJ</td>
-    <td>0.798 sec</td>
-    <td>167</td>
-    <td>29MB</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: NLJ</td>
-    <td>2.026 sec</td>
-    <td>321</td>
-    <td>94MB</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
-    <td>1.781 sec</td>
-    <td>1997</td>
-    <td>75MB</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
-    <td>1.666 sec</td>
-    <td>1126</td>
-    <td>9MB</td>
-  </tr>
-  <tr>
-    <td>7</td>
-    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
-    <td>5.814 sec</td>
-    <td>167</td>
-    <td>13MB</td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
-    <td>0.947 sec</td>
-    <td>321</td>
-    <td>49MB</td>
-  </tr>
-</table>
+| # |             Equi-Join arguments             | Execution Time | Tuples | Memory |
+|:-:|:-------------------------------------------:|:--------------:|:------:|:------:|
+| 1 | f1: D, a1:  3, f2: C, a2: 0, m: 200, J: NLJ |   5.328 sec    |  1997  |  28MB  |
+| 2 | f1: D, a1:  3, f2: B, a2: 0, m: 200, J: NLJ |   3.592 sec    |  1126  |  69MB  |
+| 3 | f1: A, a1:  3, f2: E, a2: 0, m: 200, J: NLJ |   0.798 sec    |  167   |  29MB  |
+| 4 | f1: B, a1:  1, f2: B, a2: 2, m: 200, J: NLJ |   2.026 sec    |  321   |  94MB  |
+| 5 | f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ |   1.781 sec    |  1997  |  75MB  |
+| 6 | f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ |   1.666 sec    |  1126  |  9MB   |
+| 7 | f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ |   5.814 sec    |  167   |  13MB  |
+| 8 | f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ |   0.947 sec    |  321   |  49MB  |
 
-The following table contains the results of the implementation that uses multiple threads, for the 2-phase sort-merge method. **This approach is the fastest achieved:**
+The following table contains the results of the implementation that uses multiple threads,
+for the 2-phase sort-merge method (**this approach is the fastest achieved**):
 
 #### "joinalgsMultipleMergeThreads.jar" results:
-<table>
-  <tr>
-    <th>#</th>
-    <th>Equi-Join arguments</th>
-    <th>Execution Time</th>
-    <th>Tuples</th>
-    <th>Memory</th>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
-    <td>1.653 sec</td>
-    <td>1997</td>
-    <td>24MB</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
-    <td>1.364 sec</td>
-    <td>1126</td>
-    <td>15MB</td>
-  </tr>
-  <tr>
-    <td>7</td>
-    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
-    <td>4.294 sec</td>
-    <td>167</td>
-    <td>65MB</td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
-    <td>0.618 sec</td>
-    <td>321</td>
-    <td>58MB</td>
-  </tr>
-</table>
+| # |             Equi-Join arguments             | Execution Time | Tuples | Memory |
+|:-:|:-------------------------------------------:|:--------------:|:------:|:------:|
+| 5 | f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ |   1.653 sec    |  1997  |  24MB  |
+| 6 | f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ |   1.364 sec    |  1126  |  15MB  |
+| 7 | f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ |   4.294 sec    |  167   |  65MB  |
+| 8 | f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ |   0.618 sec    |  321   |  58MB  |
 
 The following table contains the results of the implementation that uses only 2 threads, for the 2-phase sort-merge method:
 
 #### "joinalgsUsingThreads.jar" results:
-<table>
-  <tr>
-    <th>#</th>
-    <th>Equi-Join arguments</th>
-    <th>Execution Time</th>
-    <th>Tuples</th>
-    <th>Memory</th>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
-    <td>2.364 sec</td>
-    <td>1997</td>
-    <td>79MB</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
-    <td>2.227 sec</td>
-    <td>1126</td>
-    <td>1MB</td>
-  </tr>
-  <tr>
-    <td>7</td>
-    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
-    <td>6.606 sec</td>
-    <td>167</td>
-    <td>68MB</td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
-    <td>0.936 sec</td>
-    <td>321</td>
-    <td>51MB</td>
-  </tr>
-</table>
+| # |             Equi-Join arguments             | Execution Time | Tuples | Memory |
+|:-:|:-------------------------------------------:|:--------------:|:------:|:------:|
+| 5 | f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ |   2.364 sec    |  1997  |  79MB  |
+| 6 | f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ |   2.227 sec    |  1126  |  1MB   |
+| 7 | f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ |   6.606 sec    |  167   |  68MB  |
+| 8 | f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ |   0.936 sec    |  321   |  51MB  |
 
 These are the results produced while running the equi-join algorithms by using an alternative slower merge method:
 
 #### "joinalgsAlternativeMerge.jar" results:
-<table>
-  <tr>
-    <th>#</th>
-    <th>Equi-Join arguments</th>
-    <th>Execution Time</th>
-    <th>Tuples</th>
-    <th>Memory</th>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
-    <td>7.439 sec</td>
-    <td>1997</td>
-    <td>61MB</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
-    <td>5.468 sec</td>
-    <td>1126</td>
-    <td>50MB</td>
-  </tr>
-  <tr>
-    <td>7</td>
-    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
-    <td>127.163 sec (2.12 min)</td>
-    <td>167</td>
-    <td>49MB</td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
-    <td>1.575 sec</td>
-    <td>321</td>
-    <td>50MB</td>
-  </tr>
-</table>
+| # |             Equi-Join arguments             |     Execution Time     | Tuples | Memory |
+|:-:|:-------------------------------------------:|:----------------------:|:------:|:------:|
+| 5 | f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ |       7.439 sec        |  1997  |  61MB  |
+| 6 | f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ |       5.468 sec        |  1126  |  50MB  |
+| 7 | f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ | 127.163 sec (2.12 min) |  167   |  49MB  |
+| 8 | f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ |       1.575 sec        |  321   |  50MB  |
 
 #### "joinalgsAlternativeMergeUsingThreads.jar" results:
-<table>
-  <tr>
-    <th>#</th>
-    <th>Equi-Join arguments</th>
-    <th>Execution Time</th>
-    <th>Tuples</th>
-    <th>Memory</th>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ</td>
-    <td>6.726 sec</td>
-    <td>1997</td>
-    <td>26MB</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ</td>
-    <td>5.562 sec</td>
-    <td>1126</td>
-    <td>48MB</td>
-  </tr>
-  <tr>
-    <td>7</td>
-    <td>f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ</td>
-    <td>114.765 sec (1.919 min)</td>
-    <td>167</td>
-    <td>59MB</td>
-  </tr>
-  <tr>
-    <td>8</td>
-    <td>f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ</td>
-    <td>1.213 sec</td>
-    <td>321</td>
-    <td>61MB</td>
-  </tr>
-</table>
+| # |             Equi-Join arguments             |     Execution Time      | Tuples | Memory |
+|:-:|:-------------------------------------------:|:-----------------------:|:------:|:------:|
+| 5 | f1: D, a1:  3, f2: C, a2: 0, m: 200, J: SMJ |        6.726 sec        |  1997  |  26MB  |
+| 6 | f1: D, a1:  3, f2: B, a2: 0, m: 200, J: SMJ |        5.562 sec        |  1126  |  48MB  |
+| 7 | f1: A, a1:  3, f2: E, a2: 0, m: 200, J: SMJ | 114.765 sec (1.919 min) |  167   |  59MB  |
+| 8 | f1: B, a1:  1, f2: B, a2: 2, m: 200, J: SMJ |        1.213 sec        |  321   |  61MB  |
 
 #### Notes
 * All equi-join experiments have been done on a 4-core computer with hyper-threads (4 cores + 4 virtual cores = 8 cores).
@@ -348,6 +155,12 @@ These are the results produced while running the equi-join algorithms by using a
 
 #### Observations
 
-* As expected, the execution time using threads is better. To achieve that, it is required to run the program on a hardware with at least 2 CPU cores. If a relation is very small, the thread implementation is not beneficial. For instance we won't benefit by running the merge phase on a separate thread for relation A, in equi-join #7, because it contains only 150 tuples.</li>
-* As we have can observe, the results of the implementation that uses the alternative merge algorithm are worst than the implementation that uses the external merge sorting algorithm. Also, the results of the alternative implementation that uses threads are better than the results of the alternative implementation that does not use threads.
-
+* As expected, the execution time using threads is better.
+  To achieve that, it is required to run the program on a hardware with at least 2 CPU cores.
+  If a relation is very small, the thread implementation is not beneficial.
+  For instance, we won't benefit by running the merge phase on a separate thread for relation A, in equi-join #7,
+  because it contains only 150 tuples.
+* As we have can observe, the results of the implementation that uses the alternative merge algorithm 
+  are worse than the implementation that uses the external merge sorting algorithm.
+  Also, the results of the alternative implementation that uses threads 
+  are better than the results of the alternative implementation that does not use threads.
