@@ -1,11 +1,3 @@
-/**
- * ATHENS UNIVERSITY OF ECONOMICS & BUSINESS
- * M.Sc. in Computer Science
- * Course: Theory & Fundamentals of Database Systems
- * Students: Chris Kormaris, Konstantinos Korovesis
- * Deadline: January 19, 2017
- */
-
 package project;
 
 /**
