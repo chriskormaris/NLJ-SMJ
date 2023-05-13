@@ -20,7 +20,7 @@ public class MergeAlternativeThread extends Thread {
 	private final int m;
 	private final String tempDir;
 	private final String sortedRelationCSV;
-	
+
 	public MergeAlternativeThread(
 			String csvfile,
 			String relationName,
@@ -29,48 +29,48 @@ public class MergeAlternativeThread extends Thread {
 			String tempDir,
 			String sortedRelationCSV
 	) {
-		
+
 		this.csvfile = csvfile;
 		this.relationName = relationName;
 		this.a = a;
 		this.m = m;
 		this.tempDir = tempDir;
 		this.sortedRelationCSV = sortedRelationCSV;
-		
+
 	}
-	
+
 	@Override
 	public void run() {
 		System.out.println("Merge thread for relation " + relationName + " has started!");
 
 		int total_records = Utilities.getNumberOfRecords(csvfile);
-		
+
 		int number_of_sublists = (int) Math.ceil((double) total_records / m);
-		
+
 		System.out.println("relation " + relationName + " number of sublists: " + number_of_sublists);
 		System.out.println();
-		
+
 		/*** Merge the sorted sublist files into one sorted file. ***/
-		
+
 		BufferedWriter bw = Utilities.createBufferedWriter(tempDir + "/" + sortedRelationCSV);
 		List<BufferedReader> brs = new ArrayList<BufferedReader>();
-		for (int j=0; j<number_of_sublists; j++) {
+		for (int j = 0; j < number_of_sublists; j++) {
 			String relation1Sublist = relationName + "Sublist" + j;
 			BufferedReader br = Utilities.createBufferedReader(tempDir + "/" + relation1Sublist);
 			brs.add(br);
 		}
 		boolean[] firstTimes = new boolean[number_of_sublists];
 		Arrays.fill(firstTimes, Boolean.TRUE);
-		
+
 		Tuple[] lastTuples = new Tuple[number_of_sublists];
 		int sublistIndexWhereTheLastTupleWasFetchedFrom = -1;
-		
-		for (int i=0; i<total_records; i++) {
+
+		for (int i = 0; i < total_records; i++) {
 			int min = Integer.MAX_VALUE;
 			Tuple minTuple = null;
 			int minPos = -1;
 			int sublistIndexToBeDeleted = -1;
-			for (int j=0; j<number_of_sublists; j++) {
+			for (int j = 0; j < number_of_sublists; j++) {
 				String relationSublist = relationName + "Sublist" + j;
 				if (Utilities.fileExists(tempDir + "/" + relationSublist)) {
 					if (firstTimes[j] || j == sublistIndexWhereTheLastTupleWasFetchedFrom) {
@@ -89,9 +89,9 @@ public class MergeAlternativeThread extends Thread {
 					if (lastTuples[j] == null) {
 						sublistIndexToBeDeleted = j;
 					}
-					
+
 				}
-				
+
 			}
 
 			if (sublistIndexToBeDeleted != -1) {
@@ -109,7 +109,7 @@ public class MergeAlternativeThread extends Thread {
 		}
 
 		Utilities.closeBufferedWriter(bw);
-		
+
 	}
 
 }

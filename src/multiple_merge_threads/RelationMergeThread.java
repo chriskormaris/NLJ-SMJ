@@ -17,7 +17,7 @@ public class RelationMergeThread extends Thread {
 	private final int m;
 	private final String tempDir;
 	private final String sortedRelationCSV;
-	
+
 	public RelationMergeThread(
 			String csvfile,
 			String relationName,
@@ -26,44 +26,44 @@ public class RelationMergeThread extends Thread {
 			String tempDir,
 			String sortedRelationCSV
 	) {
-		
+
 		this.csvfile = csvfile;
 		this.relationName = relationName;
 		this.a = a;
 		this.m = m;
 		this.tempDir = tempDir;
 		this.sortedRelationCSV = sortedRelationCSV;
-		
+
 	}
-	
+
 	@Override
 	public void run() {
 		System.out.println("Merge thread for relation " + relationName + " has started!");
 
 		int total_records = Utilities.getNumberOfRecords(csvfile);
-		
+
 		int number_of_sublists = (int) Math.ceil((double) total_records / m);
-		
+
 		System.out.println("relation " + relationName + " number of sublists: " + number_of_sublists);
 		System.out.println();
-		
+
 		/*** Merge the sorted sublist files of the relation into one sorted file. ***/
 
 		// Starting from sublists of size m ,
 		// each time we double the length until we reach size T1.
 		int sublistSize = m;
 		while (sublistSize <= total_records) { // merge iterations
-			
+
 			MergeIterationThread iterationThread = new MergeIterationThread(a, number_of_sublists, relationName, tempDir);
 			iterationThread.run();
-			
+
 			number_of_sublists = (int) Math.ceil((double) number_of_sublists / 2);
 			sublistSize = sublistSize * 2;
 		}
-		
+
 		Utilities.renameFile(tempDir + "/" + relationName + "Sublist0", tempDir + "/" + sortedRelationCSV);
-	
+
 	}
 
-	
+
 }

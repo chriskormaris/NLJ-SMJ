@@ -63,9 +63,9 @@ public class SublistMergeThread extends Thread {
 
 			if (firstTime) firstTime = false;
 
-			if ( (team1Tuple != null && team2Tuple != null
+			if ((team1Tuple != null && team2Tuple != null
 					&& team1Tuple.getAttributeValue(a) <= team2Tuple.getAttributeValue(a))
-					|| (team1Tuple != null && team2Tuple == null) ) {
+					|| (team1Tuple != null && team2Tuple == null)) {
 
 				minTuple = team1Tuple;
 				lastTupleFetchedFromTeam1Sublist = true;

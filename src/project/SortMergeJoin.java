@@ -1,27 +1,29 @@
 package project;
 
+import multiple_merge_threads.RelationMergeThread;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 
-import multiple_merge_threads.RelationMergeThread;
-
 
 public class SortMergeJoin {
-	
-	
-	/** Non-efficient SMJ.  **/	
+
+
+	/**
+	 * Non-efficient SMJ.
+	 **/
 	public void sortMergeJoin(String csvfile1, String csvfile2,
-			int a1, int a2, int m, String tempDir, String outputFile) {
-		
+	                          int a1, int a2, int m, String tempDir, String outputFile) {
+
 		Utilities.createTempDir(tempDir);
-		
+
 		String relation1Name = Utilities.getCSVName(csvfile1);
 		String relation2Name = Utilities.getCSVName(csvfile2);
-		
+
 		/*** run the 2-phase sort on R and S ***/
-		
+
 		/*** Phase 1: split each relation to sublists and sort them ***/
-		
+
 		if (!relation1Name.equals(relation2Name)) {
 			Utilities.splitCSVToSortedSublists(csvfile1, a1, m, tempDir);
 			Utilities.splitCSVToSortedSublists(csvfile2, a2, m, tempDir);
@@ -33,14 +35,14 @@ public class SortMergeJoin {
 			relation1Name = relation1Name + "1";
 			relation2Name = relation2Name + "2";
 		}
-		
+
 		System.out.println();
-		
+
 		/*** Phase 2: merge ***/
-		
+
 		String sortedRcsv = "sorted" + relation1Name;
 		String sortedScsv = "sorted" + relation2Name;
-		
+
 		/* Solution 1 - External merge sorting, without threads. */
 		// This is the merging phase of the external sorting algorithm.
 		/*
@@ -48,7 +50,7 @@ public class SortMergeJoin {
 		System.out.println();
 		merge(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
 		*/
-		
+
 		/* Solution 1 - External merge sorting, with 2 threads. */
 		/*
 		MergeThread merge1 = new MergeThread(csvfile1, relation1Name, a1, m, tempDir, sortedRcsv);
@@ -62,7 +64,7 @@ public class SortMergeJoin {
 			e.printStackTrace();
 		}
 		*/
-		
+
 		/* Solution 1 - External merge sorting, with multiple threads (THE FASTEST!). */
 		RelationMergeThread merge1 = new RelationMergeThread(csvfile1, relation1Name, a1, m, tempDir, sortedRcsv);
 		RelationMergeThread merge2 = new RelationMergeThread(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
@@ -74,7 +76,7 @@ public class SortMergeJoin {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		
+
 		/* Solution 2, without threads (THE SLOWEST!). */
 		// Slower merge algorithm.
 		// Reads one tuple at a time from each sorted sublist of the relation
@@ -84,7 +86,7 @@ public class SortMergeJoin {
 		System.out.println();
 		mergeAlternative(csvfile2, relation2Name, a2, m, tempDir, sortedScsv);
 		*/
-		
+
 		/* Solution 2, with 2 threads. */
 		/*
 		MergeAlternativeThread mergeAlternative1 = new MergeAlternativeThread(csvfile1, relation1Name, a1, m, tempDir, sortedRcsv);
@@ -98,21 +100,21 @@ public class SortMergeJoin {
 			e.printStackTrace();
 		}
 		*/
-		
+
 		System.out.println();
-		
+
 		/*** Run the join algorithm on the sorted relations R and S ***/
 
 		System.out.print("Joining relations...");
 		Utilities.createNewFile(outputFile);
 		join(tempDir + "/" + sortedRcsv, tempDir + "/" + sortedScsv, a1, a2, m, outputFile);
 		System.out.println("[OK]");
-		
+
 		Utilities.deleteTempDir(tempDir);
-		
+
 	}
-	
-	
+
+
 	// This is the merging phase of the external sorting algorithm.
 	// Splits the sublists to 2 teams.
 	// Merges the sublists of team 1 with the corresponding sublists of team 2.
@@ -217,8 +219,8 @@ public class SortMergeJoin {
 		
 	}
 	*/
-	
-	
+
+
 	// Slower merge algorithm.
 	// Reads one tuple at a time from each sorted sublist of the relation
 	// and writes the min in the sortedRcsv or sortedScsv file.
@@ -295,63 +297,65 @@ public class SortMergeJoin {
 		
 	}
 	*/
-	
-	
-	/** This function gets as an input two sorted relation files. **/
+
+
+	/**
+	 * This function gets as an input two sorted relation files.
+	 **/
 	public void join(String csvfile1, String csvfile2, int a1, int a2, int m, String outputFile) {
-		
+
 		String relation1Name = Utilities.getCSVName(csvfile1).replace("sorted", "");
 		String relation2Name = Utilities.getCSVName(csvfile2).replace("sorted", "");
-		
+
 		BufferedReader br1 = Utilities.createBufferedReader(csvfile1);
 		BufferedReader br2 = Utilities.createBufferedReader(csvfile2);
 		BufferedWriter bw = Utilities.createBufferedWriter(outputFile);
-		
+
 		Tuple r = Utilities.getNextTuple(br1, relation1Name);
 		Tuple s = Utilities.getNextTuple(br2, relation2Name);
-		
-		
+
+
 		do {
-			
+
 			if (r.getAttributeValue(a1) == s.getAttributeValue(a2)) {
 				Tuple outputTuple = Utilities.joinTuples(r, s, a1, a2);
-				
+
 				// if this is the first tuple to be written,
 				// we should write the attributes header beforehand 
 				if (Utilities.isEmptyFile(outputFile)) {
 					Utilities.writeHeaderToFile(bw, outputTuple);
 				}
-				
+
 				Utilities.writeTupleToFile(bw, outputTuple);
-				
+
 				Tuple tempS = s;
-				
+
 				// Output further tuples that match with r on attribute a1.
 				// In case we have more than (m-2) that match with the same value on attribute a1,
 				// the algorithm does not produce correct results.
 				Utilities.markBufferedReader(br2, m);
 				while ((s = Utilities.getNextTuple(br2, relation2Name)) != null &&
 						(r.getAttributeValue(a1) == s.getAttributeValue(a2))) {
-					
+
 					outputTuple = Utilities.joinTuples(r, s, a1, a2);
 					Utilities.writeTupleToFile(bw, outputTuple);
 				}
-				
+
 				Utilities.resetBufferedReader(br2);
-				
+
 				// Output further tuples that match with s on attribute a2.
 				// In case we have more than (m-2) that match with the same value on attribute a2,
 				// the algorithm does not produce correct results.
 				Utilities.markBufferedReader(br1, m);
 				while ((r = Utilities.getNextTuple(br1, relation1Name)) != null &&
 						(r.getAttributeValue(a1) == tempS.getAttributeValue(a2))) {
-					
+
 					outputTuple = Utilities.joinTuples(r, s, a1, a2);
 					Utilities.writeTupleToFile(bw, outputTuple);
 				}
-				
+
 				Utilities.resetBufferedReader(br1);
-				
+
 				r = Utilities.getNextTuple(br1, relation1Name);
 				s = Utilities.getNextTuple(br2, relation2Name);
 			} else if (r.getAttributeValue(a1) < s.getAttributeValue(a2)) {
@@ -359,14 +363,14 @@ public class SortMergeJoin {
 			} else if (r.getAttributeValue(a1) > s.getAttributeValue(a2)) {
 				s = Utilities.getNextTuple(br2, relation2Name);
 			}
-		} while (r != null && s!= null);
-		
+		} while (r != null && s != null);
+
 		Utilities.closeBufferedReader(br1);
 		Utilities.closeBufferedReader(br2);
 		Utilities.closeBufferedWriter(bw);
 	}
-	
-	
+
+
 	/** SMJ that does not use sublist files. **/
 	/*
 	public void sortJoin(Tuple[] R, Tuple[] S, int a1, int a2, String outputFile) {
@@ -420,5 +424,5 @@ public class SortMergeJoin {
 		Utilities.closeBufferedWriter(bw);
 	}
 	*/
-	
+
 }
